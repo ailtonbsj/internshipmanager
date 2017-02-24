@@ -19,7 +19,7 @@ O Internship Manager é um sistema capaz de gerenciar documentos de alunos em es
  - Backup na Nuvem automatizado caso Google Drive instalado
  
 ## INSTALAÇÃO
-1) Instale o servidor de banco de dados PostgreSQL 9.3 [Clique aqui para baixar](https://www.enterprisedb.com/download-postgresql-binaries). No momento da instalação forneca a senha 123 para o administrador root.
+1) Instale o servidor de banco de dados PostgreSQL 9.3 [Clique aqui para baixar](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads). No momento da instalação forneca a senha 123 para o administrador root.
 
 2) Instale o Google Driver.
 
@@ -32,5 +32,5 @@ O Internship Manager é um sistema capaz de gerenciar documentos de alunos em es
 ## Links
 
  - [Apache POI] (https://poi.apache.org/)
- - [PostgreSQL 9.3] (https://www.enterprisedb.com/download-postgresql-binaries)
+ - [PostgreSQL 9.3] (https://www.enterprisedb.com/downloads/postgres-postgresql-downloads)
  - [Executavel InternshipManagerSetup] (https://sourceforge.net/projects/internshipmanager)
