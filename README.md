@@ -31,7 +31,11 @@ O Internship Manager é um sistema capaz de gerenciar documentos de alunos em es
 
 
 ![Tela 1] (https://a.fsdn.com/con/app/proj/internshipmanager/screenshots/1.png/1)
+
+
 ![Tela 2] (https://a.fsdn.com/con/app/proj/internshipmanager/screenshots/_2.png/1)
+
+
 ![Tela 3] (https://a.fsdn.com/con/app/proj/internshipmanager/screenshots/3.png/1)
 
 ## Links
