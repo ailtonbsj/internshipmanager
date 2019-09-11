@@ -27,19 +27,20 @@ O Internship Manager é um sistema capaz de gerenciar documentos de alunos em es
 
 4) Usando o prompt de comando execute:
 
-	mklink /D "%USERPROFILE%\Google Drive\BKP Internship"  "C:\InternshipManager1\backups"
+```
+mklink /D "%USERPROFILE%\Google Drive\BKP Internship"  "C:\InternshipManager1\backups"
+```
+
+![Tela 1](https://a.fsdn.com/con/app/proj/internshipmanager/screenshots/1.png)
 
 
-![Tela 1] (https://a.fsdn.com/con/app/proj/internshipmanager/screenshots/1.png/1)
+![Tela 2](https://a.fsdn.com/con/app/proj/internshipmanager/screenshots/_2.png)
 
 
-![Tela 2] (https://a.fsdn.com/con/app/proj/internshipmanager/screenshots/_2.png/1)
-
-
-![Tela 3] (https://a.fsdn.com/con/app/proj/internshipmanager/screenshots/3.png/1)
+![Tela 3](https://a.fsdn.com/con/app/proj/internshipmanager/screenshots/3.png)
 
 ## Links
 
- - [Apache POI] (https://poi.apache.org/)
- - [PostgreSQL 9.3] (https://www.enterprisedb.com/downloads/postgres-postgresql-downloads)
- - [Executavel InternshipManagerSetup] (https://sourceforge.net/projects/internshipmanager)
+ - [Apache POI](https://poi.apache.org/)
+ - [PostgreSQL 9.3](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads)
+ - [Executavel InternshipManagerSetup](https://sourceforge.net/projects/internshipmanager)
