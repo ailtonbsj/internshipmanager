@@ -45,12 +45,12 @@ public class ConsultasDB {
 		} catch (Exception e) {
 			String erro = e.getMessage();
 			erro = erro.substring(0, erro.indexOf('\n'));
-			String errMatr = "ERRO: duplicar valor da chave viola a restri��o de unicidade \"fk_cursoaluno\"";
-			String errMatrIgual = "ERRO: duplicar valor da chave viola a restri��o de unicidade \"unik_matricula\"";
+			String errMatr = "ERRO: duplicar valor da chave viola a restrição de unicidade \"fk_cursoaluno\"";
+			String errMatrIgual = "ERRO: duplicar valor da chave viola a restrição de unicidade \"unik_matricula\"";
 			if(erro.equals(errMatr))
-				JOptionPane.showMessageDialog(null, "Aluno j� tem matr�cula nesse curso!\nMatr�cula n�o adicionada!");
+				JOptionPane.showMessageDialog(null, "Aluno já tem matrícula nesse curso!\nMatrícula não adicionada!");
 			else if(erro.equals(errMatrIgual))
-				JOptionPane.showMessageDialog(null, "Login de matr�cula j� existente!\nMatr�cula n�o adicionada!");
+				JOptionPane.showMessageDialog(null, "Login de matrícula já existente!\nMatrícula não adicionada!");
 			else
 				JOptionPane.showMessageDialog(null, erro);
 		}
@@ -69,27 +69,27 @@ public class ConsultasDB {
 		 catch (Exception e) {
 			String erro = e.getMessage();
 			erro = erro.substring(0, erro.indexOf('\n'));
-			String errCurso = "ERRO: atualiza��o ou exclus�o em tabela \"cursos\" viola restri��o de chave estrangeira \"fk_curso\" em \"cursos_alunos\"";
-			String errOrientador = "ERRO: atualiza��o ou exclus�o em tabela \"orientadores\" viola restri��o de chave estrangeira \"fk_orientador\" em \"empresas_alunos\"";
-			String errEmpresa = "ERRO: atualiza��o ou exclus�o em tabela \"empresas\" viola restri��o de chave estrangeira \"fk_cnpj\" em \"empresas_alunos\"";
-			String errSuperv = "ERRO: atualiza��o ou exclus�o em tabela \"supervisores\" viola restri��o de chave estrangeira \"fk_superv\" em \"empresas_alunos\"";
-			String errEmSup = "ERRO: atualiza��o ou exclus�o em tabela \"empresas\" viola restri��o de chave estrangeira \"fk_cnpjs\" em \"supervisores\"";
-			String errAluno = "ERRO: atualiza��o ou exclus�o em tabela \"alunos\" viola restri��o de chave estrangeira \"fk_aluno\" em \"cursos_alunos\"";
-			String errMat = "ERRO: atualiza��o ou exclus�o em tabela \"cursos_alunos\" viola restri��o de chave estrangeira \"fk_matricula\" em \"empresas_alunos\"";
+			String errCurso = "ERRO: atualização ou exclusão em tabela \"cursos\" viola restrição de chave estrangeira \"fk_curso\" em \"cursos_alunos\"";
+			String errOrientador = "ERRO: atualização ou exclusão em tabela \"orientadores\" viola restrição de chave estrangeira \"fk_orientador\" em \"empresas_alunos\"";
+			String errEmpresa = "ERRO: atualização ou exclusão em tabela \"empresas\" viola restrição de chave estrangeira \"fk_cnpj\" em \"empresas_alunos\"";
+			String errSuperv = "ERRO: atualização ou exclusão em tabela \"supervisores\" viola restrição de chave estrangeira \"fk_superv\" em \"empresas_alunos\"";
+			String errEmSup = "ERRO: atualização ou exclusão em tabela \"empresas\" viola restrição de chave estrangeira \"fk_cnpjs\" em \"supervisores\"";
+			String errAluno = "ERRO: atualização ou exclusão em tabela \"alunos\" viola restrição de chave estrangeira \"fk_aluno\" em \"cursos_alunos\"";
+			String errMat = "ERRO: atualização ou exclusão em tabela \"cursos_alunos\" viola restrição de chave estrangeira \"fk_matricula\" em \"empresas_alunos\"";
 			if(erro.equals(errCurso))
-				JOptionPane.showMessageDialog(null, "Voc� n�o pode excluir esse Curso!\nAlgum Aluno est� vinculado a ele.");
+				JOptionPane.showMessageDialog(null, "Você não pode excluir esse Curso!\nAlgum Aluno está vinculado a ele.");
 			else if(erro.equals(errOrientador))
-				JOptionPane.showMessageDialog(null, "Voc� n�o pode excluir esse Orientador!\nAlgum Estagi�rio est� vinculado a ele.");
+				JOptionPane.showMessageDialog(null, "Você não pode excluir esse Orientador!\nAlgum Estagiário está vinculado a ele.");
 			else if(erro.equals(errEmpresa))
-				JOptionPane.showMessageDialog(null, "Voc� n�o pode excluir essa Empresa!\nAlgum Estagi�rio est� vinculado a ela.");
+				JOptionPane.showMessageDialog(null, "Você não pode excluir essa Empresa!\nAlgum Estagiário está vinculado a ela.");
 			else if(erro.equals(errSuperv))
-				JOptionPane.showMessageDialog(null, "Voc� n�o pode excluir esse Supervisor!\nAlgum Estagi�rio est� vinculado a ele.");
+				JOptionPane.showMessageDialog(null, "Você não pode excluir esse Supervisor!\nAlgum Estagiário está vinculado a ele.");
 			else if(erro.equals(errEmSup))
-				JOptionPane.showMessageDialog(null, "Voc� n�o pode excluir essa Empresa!\nAlgum Supervisor est� vinculado a ela.");
+				JOptionPane.showMessageDialog(null, "Você não pode excluir essa Empresa!\nAlgum Supervisor está vinculado a ela.");
 			else if(erro.equals(errAluno))
-				JOptionPane.showMessageDialog(null, "Voc� n�o pode excluir esse Aluno!\nEle est� matriculado em algum curso.");
+				JOptionPane.showMessageDialog(null, "Você não pode excluir esse Aluno!\nEle está matriculado em algum curso.");
 			else if(erro.equals(errMat))
-				JOptionPane.showMessageDialog(null, "Voc� n�o pode excluir essa Matricula!\nEla ainda est� vinculado a algum est�gio.");
+				JOptionPane.showMessageDialog(null, "Você não pode excluir essa Matricula!\nEla ainda está vinculado a algum estágio.");
 			else
 				JOptionPane.showMessageDialog(null, erro);
 			System.out.println(erro);
@@ -131,7 +131,7 @@ public class ConsultasDB {
 	}
 	
 	public static boolean excluirAlunos(String id){
-		int resposta = JOptionPane.showConfirmDialog(null, "Voc� tem certeza que deseja excluir???", "Alerta", JOptionPane.OK_CANCEL_OPTION);
+		int resposta = JOptionPane.showConfirmDialog(null, "Você tem certeza que deseja excluir???", "Alerta", JOptionPane.OK_CANCEL_OPTION);
 		if(resposta == 0){
 			removeRegistros("alunos", "cpf", id);
 			return true;
@@ -140,7 +140,7 @@ public class ConsultasDB {
 	}
 	
 	public static boolean excluirEmpresas(String id){
-		int resposta = JOptionPane.showConfirmDialog(null, "Voc� tem certeza que deseja excluir???", "Alerta", JOptionPane.OK_CANCEL_OPTION);
+		int resposta = JOptionPane.showConfirmDialog(null, "Você tem certeza que deseja excluir???", "Alerta", JOptionPane.OK_CANCEL_OPTION);
 		if(resposta == 0){
 			removeRegistros("empresas", "cnpj", id);
 			return true;
@@ -149,7 +149,7 @@ public class ConsultasDB {
 	}
 	
 	public static boolean excluirEstagios(String matricula, String cnpj){
-		int resposta = JOptionPane.showConfirmDialog(null, "Voc� tem certeza que deseja excluir???", "Alerta", JOptionPane.OK_CANCEL_OPTION);
+		int resposta = JOptionPane.showConfirmDialog(null, "Você tem certeza que deseja excluir???", "Alerta", JOptionPane.OK_CANCEL_OPTION);
 		if(resposta == 0){
 			removeRegistros("empresas_alunos", "matricula", matricula,"cnpj",cnpj);
 			return true;

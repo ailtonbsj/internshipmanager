@@ -58,7 +58,7 @@ public class InternshipManager extends JFrame {
 	
     public static final String DATABASE_URL = "jdbc:postgresql://localhost:5432/internshipdb";
     public static final String USERNAME = "postgres";
-    public static final String PASSWORD = "123";
+    public static final String PASSWORD = "postgres";
     private JMenu mnAluno;
     private JMenu mnEmpresa;
     private JMenu mnEstagiandos;
@@ -75,8 +75,12 @@ public class InternshipManager extends JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            	System.out.println(info.getName());
                 if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                } else if("Metal".equals(info.getName())) { // GTK+ Metal Nimbus CDE/Motif
+                	javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
@@ -93,7 +97,6 @@ public class InternshipManager extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			@SuppressWarnings("resource")
 			public void run() {
-
 					
 					File arqConf = new File(InternshipManager.class.getProtectionDomain().getCodeSource().getLocation().getPath());
 					arqConf = new File(arqConf.getParent(),"conf.ini");
@@ -146,7 +149,7 @@ public class InternshipManager extends JFrame {
 				}
 			}
 		});
-		setTitle("Internship Manager 1.0");
+		setTitle("Internship Manager 1.1");
 		setBounds(100, 100, 826, 466);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -193,9 +196,9 @@ public class InternshipManager extends JFrame {
 		botaoAtualizarEmpresas = new JButton("Atualizar Empresas");
 		botaoExcluirEmpresas = new JButton("Excluir Empresas");
 		botaoAdicionarEmpresas = new JButton("Adicionar Empresas");
-		btAddEstagio = new JButton("Novo Est�gio");
-		btRefEstagio = new JButton("Atualizar Est�gio");
-		btDelEstagio = new JButton("Remover Est�gio");
+		btAddEstagio = new JButton("Novo Estágio");
+		btRefEstagio = new JButton("Atualizar Estágio");
+		btDelEstagio = new JButton("Remover Estágio");
 		btGeraDoc = new JButton("Gerar Documentos");
 		
 		botaoAtualizarAlunos.addActionListener(new ActionListener() {
@@ -417,7 +420,7 @@ public class InternshipManager extends JFrame {
 		JMenuItem mntmSobre = new JMenuItem("Sobre");
 		mntmSobre.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null, "Software desenvolvido por:\n\nJos� Ailton B. da Silva\nEmail:ailton.ifce@gmail.com\n\nHermesson Douglas Mota\nEmail: hermesson@gmail.com\n\n");
+				JOptionPane.showMessageDialog(null, "Software desenvolvido por:\n\nJosé Ailton B. da Silva\nEmail:ailton.ifce@gmail.com\n\nHermesson Douglas Mota\nEmail: hermesson@gmail.com\n\n");
 			}
 		});
 		mnAjuda.add(mntmSobre);
