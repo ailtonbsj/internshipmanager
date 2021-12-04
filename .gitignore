@@ -1,5 +1,3 @@
-.settings
 bin
 documentos/*
-.project
 conf.ini
