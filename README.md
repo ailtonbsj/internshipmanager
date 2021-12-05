@@ -4,7 +4,7 @@ O Internship Manager é um sistema capaz de gerenciar documentos de alunos em es
 
 ## Requisitos
 
-> Leia o [FOR-WINDOWS.md](README.md) para versão Windows com Instalador.
+> Leia o [FOR-WINDOWS.md](FOR-WINDOWS.md) para versão Windows com Instalador.
 
  - Java SE 1.8
  - Servidor PostgreSQL

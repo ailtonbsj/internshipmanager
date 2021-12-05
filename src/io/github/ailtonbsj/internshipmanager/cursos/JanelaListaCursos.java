@@ -15,7 +15,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import io.github.ailtonbsj.internshipmanager.Config;
 import io.github.ailtonbsj.internshipmanager.InternshipManager;
 import io.github.ailtonbsj.internshipmanager.database.ConsultasDB;
 import io.github.ailtonbsj.internshipmanager.database.GeradorDeIds;

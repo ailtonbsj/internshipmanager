@@ -2,7 +2,6 @@ package io.github.ailtonbsj.internshipmanager.estagios;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
@@ -17,7 +16,6 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import io.github.ailtonbsj.internshipmanager.InternshipManager;
 import io.github.ailtonbsj.internshipmanager.database.ConsultasDB;
 import io.github.ailtonbsj.internshipmanager.database.ResultSetSQL;
 
@@ -28,22 +26,6 @@ public class JanelaListarEstagios extends JInternalFrame {
 	static final String sql = "SELECT alunos.nome AS aluno,alunos.nascimento,cursos_alunos.cpf,empresas_alunos.matricula,empresas_alunos.cnpj,empresas.nome AS empresa,orientadores.nome AS orientador, empresas_alunos.data_inicio,empresas_alunos.data_fim,empresas_alunos.horario FROM empresas_alunos,cursos_alunos,alunos,empresas, orientadores WHERE (empresas_alunos.matricula = cursos_alunos.matricula AND cursos_alunos.cpf = alunos.cpf AND empresas.cnpj = empresas_alunos.cnpj AND empresas_alunos.id_orientador = orientadores.id_orientador)";
 	private JTable table;
 	private JTextField textFieldFiltro;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					JanelaListarEstagios frame = new JanelaListarEstagios();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	public JanelaListarEstagios() {
 		setResizable(true);

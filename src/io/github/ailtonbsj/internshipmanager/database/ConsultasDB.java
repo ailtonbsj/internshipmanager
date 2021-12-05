@@ -9,7 +9,6 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 import io.github.ailtonbsj.internshipmanager.Config;
-import io.github.ailtonbsj.internshipmanager.InternshipManager;
 
 public class ConsultasDB {
 	

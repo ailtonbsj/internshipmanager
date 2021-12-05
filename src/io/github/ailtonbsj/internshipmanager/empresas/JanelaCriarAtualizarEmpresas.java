@@ -34,7 +34,6 @@ import javax.swing.text.DocumentFilter;
 import javax.swing.text.MaskFormatter;
 import javax.swing.text.PlainDocument;
 
-import io.github.ailtonbsj.internshipmanager.Config;
 import io.github.ailtonbsj.internshipmanager.UpCaseField;
 import io.github.ailtonbsj.internshipmanager.database.Constantes;
 import io.github.ailtonbsj.internshipmanager.database.ConsultasDB;
