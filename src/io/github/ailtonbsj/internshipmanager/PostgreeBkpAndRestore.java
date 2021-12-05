@@ -6,62 +6,90 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
+
+import javax.swing.JOptionPane;
 
 import io.github.ailtonbsj.internshipmanager.database.ConversorDates;
 
 public class PostgreeBkpAndRestore {
 
 	public static void realizaBackup() throws IOException, InterruptedException {
-		final ArrayList<String> comandos = new ArrayList<String>();
-
-		// comandos.add("C:\\Program Files (x86)\\PostgreSQL\\8.4\\bin\\pg_dump.exe");
-		// // esse � meu caminho
-		comandos.add("C:\\Program Files\\PostgreSQL\\9.3\\bin\\pg_dump.exe");
-
-		comandos.add("-i");
-		comandos.add("-h");
-		comandos.add("localhost");
-		comandos.add("-p");
-		comandos.add("5432");
-		comandos.add("-U");
-		comandos.add("postgres");
-		comandos.add("-F");
-		comandos.add("c");
-		comandos.add("-b");
-		comandos.add("-v");
-		comandos.add("-f");
-
 		File pasta = new File(InternshipManager.class.getProtectionDomain().getCodeSource().getLocation().getPath());
-		pasta = new File(pasta.getParent(),"backups");
-		pasta = new File(pasta,ConversorDates.DateToString(new Date(), "yyy-MM-dd") + ".backup");
-		comandos.add(pasta.toString()); // eu utilizei meu C:\ e D:\ para os
-											// testes e gravei o backup com
-											// sucesso.
-		comandos.add("internshipdb");
+		pasta = new File(pasta.getParent(), "backups");
+		pasta.mkdirs();
+		pasta = new File(pasta, ConversorDates.DateToString(new Date(), "yyy-MM-dd") + ".backup");
+
+		List<String> comandos;
+		if (Config.OS == OperatingSystem.WINDOWS) {
+			comandos = new ArrayList<>(Arrays.asList("C:\\Program Files\\PostgreSQL\\9.3\\bin\\pg_dump.exe", "-i", "-h",
+					Config.HOST, "-p", "5432", "-U", Config.USERNAME, "-F", "c", "-b", "-v", "-f"));
+		} else {
+			comandos = new ArrayList<>(Arrays.asList("pg_dump", "-h", Config.HOST, "-p", Config.PORT, "-U",
+					Config.USERNAME, "-F", "c", "-b", "-v", "-f"));
+		}
+		comandos.add(pasta.toString());
+		comandos.add(Config.DATABASE);
 
 		ProcessBuilder pb = new ProcessBuilder(comandos);
-
-		pb.environment().put("PGPASSWORD", "123");
+		pb.environment().put("PGPASSWORD", Config.PASSWORD);
 
 		try {
 			final Process process = pb.start();
+			final BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+			StringBuilder builder = new StringBuilder();
+			String line = null;
+			while ((line = reader.readLine()) != null) {
+				builder.append(line);
+				builder.append(System.getProperty("line.separator"));
+			}
+			String result = builder.toString();
+			System.out.println(result);
+			reader.close();
 
-			final BufferedReader r = new BufferedReader(new InputStreamReader(
-					process.getErrorStream()));
+			process.waitFor();
+			process.destroy();
+			PostgreeBkpAndRestore.salvarArquivoConf();
+			System.exit(0);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (InterruptedException ie) {
+			ie.printStackTrace();
+		}
+	}
+
+	public static void realizaRestore(File arquivo) throws IOException, InterruptedException {
+		List<String> comandos;
+		if (Config.OS == OperatingSystem.WINDOWS) {
+			comandos = new ArrayList<>(Arrays.asList("C:\\Program Files\\PostgreSQL\\9.3\\bin\\pg_restore.exe", "-h",
+					Config.HOST, "-p", Config.PORT, "-U", Config.USERNAME, "-d", Config.DATABASE, "-v"));
+		} else {
+			comandos = new ArrayList<>(Arrays.asList("pg_restore", "-h", Config.HOST, "-p", Config.PORT, "-U", Config.USERNAME,
+					"-d", Config.DATABASE, "-v"));
+		}
+		comandos.add(arquivo.toString());
+
+		ProcessBuilder pb = new ProcessBuilder(comandos);
+		pb.environment().put("PGPASSWORD", Config.PASSWORD);
+
+		try {
+			final Process process = pb.start();
+			final BufferedReader r = new BufferedReader(new InputStreamReader(process.getErrorStream()));
 			String line = r.readLine();
 			while (line != null) {
-				//System.err.println(line);
+				System.err.println(line);
 				line = r.readLine();
 			}
 			r.close();
 
 			process.waitFor();
 			process.destroy();
-			//System.out.println("backup realizado com sucesso.");
-			PostgreeBkpAndRestore.salvarArquivoConf();
-			System.exit(0);
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -71,96 +99,43 @@ public class PostgreeBkpAndRestore {
 
 	}
 
-	public static void realizaRestore(File arquivo) throws IOException, InterruptedException{        
-	       final ArrayList<String> comandos = new ArrayList<String>();        
-	           
-	       comandos.add("C:\\Program Files\\PostgreSQL\\9.3\\bin\\pg_restore.exe"); //testado no windows xp  
-	         
-	         
-	       comandos.add("-i");        
-	       comandos.add("-h");        
-	       comandos.add("localhost");    //ou   comandos.add("192.168.0.1");   
-	       comandos.add("-p");        
-	       comandos.add("5432");        
-	       comandos.add("-U");        
-	       comandos.add("postgres");        
-	       comandos.add("-d");        
-	       comandos.add("internshipdb");       
-	       comandos.add("-v");        
-	           
-	       comandos.add(arquivo.toString());   // eu utilizei meu C:\ e D:\ para os testes e gravei o backup com sucesso.    
-	  
-	       ProcessBuilder pb = new ProcessBuilder(comandos);        
-	           
-	       pb.environment().put("PGPASSWORD", "123");     //Somente coloque sua senha           
-	           
-	       try {        
-	           final Process process = pb.start();        
-	       
-	           final BufferedReader r = new BufferedReader(        
-	               new InputStreamReader(process.getErrorStream()));        
-	           String line = r.readLine();        
-	           while (line != null) {        
-	           System.err.println(line);        
-	           line = r.readLine();        
-	           }        
-	           r.close();        
-	       
-	           process.waitFor();      
-	           process.destroy();    
-	       
-	       } catch (IOException e) {        
-	           e.printStackTrace();        
-	       } catch (InterruptedException ie) {        
-	           ie.printStackTrace();        
-	       }           
-	             
-	   }
-	
-	public static void criaBanco() throws IOException, InterruptedException{        
-	       final ArrayList<String> comandos = new ArrayList<String>();        
-	           
-	       comandos.add("C:\\Program Files\\PostgreSQL\\9.3\\bin\\createdb.exe"); //testado no windows xp  
-	         
-	                 
-	       comandos.add("-h");        
-	       comandos.add("localhost");    //ou   comandos.add("192.168.0.1");   
-	       comandos.add("-p");        
-	       comandos.add("5432");        
-	       comandos.add("-U");        
-	       comandos.add("postgres");                
-	       comandos.add("internshipdb");        
-  
-	       ProcessBuilder pb = new ProcessBuilder(comandos);        
-	           
-	       pb.environment().put("PGPASSWORD", "123");     //Somente coloque sua senha           
-	           
-	       try {        
-	           final Process process = pb.start();        
-	       
-	           final BufferedReader r = new BufferedReader(        
-	               new InputStreamReader(process.getErrorStream()));        
-	           String line = r.readLine();        
-	           while (line != null) {        
-	           System.err.println(line);        
-	           line = r.readLine();        
-	           }        
-	           r.close();        
-	       
-	           process.waitFor();      
-	           process.destroy();   
-	       
-	       } catch (IOException e) {        
-	           e.printStackTrace();        
-	       } catch (InterruptedException ie) {        
-	           ie.printStackTrace();        
-	       }           
-	             
-	   }
-	
-	public static void salvarArquivoConf(){
+	public static void createDatabaseFromTerminal() {
+		final List<String> comandos = Arrays.asList("C:\\Program Files\\PostgreSQL\\9.3\\bin\\createdb.exe", "-h",
+				Config.HOST, "-p", Config.PORT, "-U", Config.USERNAME, Config.DATABASE);
+		ProcessBuilder pb = new ProcessBuilder(comandos);
+		pb.environment().put("PGPASSWORD", Config.PASSWORD);
+		try {
+			final Process process = pb.start();
+			final BufferedReader r = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+			String line = r.readLine();
+			while (line != null) {
+				System.err.println(line);
+				line = r.readLine();
+			}
+			r.close();
+			process.waitFor();
+			process.destroy();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (InterruptedException ie) {
+			ie.printStackTrace();
+		}
+	}
+
+	public static void criaBanco() {
+		try {
+			DriverManager.getConnection(
+					"jdbc:postgresql://" + Config.HOST + "/?user=" + Config.USERNAME + "&password=" + Config.PASSWORD)
+					.createStatement().executeUpdate("CREATE DATABASE " + Config.DATABASE);
+			JOptionPane.showMessageDialog(null, "Um novo Banco de dados foi criado!");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void salvarArquivoConf() {
 		File arqConf = new File(InternshipManager.class.getProtectionDomain().getCodeSource().getLocation().getPath());
-		arqConf = new File(arqConf.getParent(),"conf.ini");
+		arqConf = new File(arqConf.getParent(), "conf.ini");
 		try {
 			BufferedWriter bfr = new BufferedWriter(new FileWriter(arqConf));
 			bfr.write(ConversorDates.DateToString(new Date(), "dd/MM/yyyy"));

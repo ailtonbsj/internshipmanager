@@ -8,6 +8,7 @@ import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
+import io.github.ailtonbsj.internshipmanager.Config;
 import io.github.ailtonbsj.internshipmanager.InternshipManager;
 
 public class ConsultasDB {
@@ -17,12 +18,15 @@ public class ConsultasDB {
 	private static ResultSet resultSet;
 	
 	public static void criaConexao() throws SQLException {
-		connection = DriverManager.getConnection(InternshipManager.DATABASE_URL, InternshipManager.USERNAME, InternshipManager.PASSWORD);
+		connection = DriverManager.getConnection(Config.DATABASE_URL, Config.USERNAME, Config.PASSWORD);
 		statement = connection.createStatement();
 	}
 	
+	public static ResultSetSQL busca(String sql) throws SQLException {
+		return new ResultSetSQL(Config.DATABASE_URL, Config.USERNAME, Config.PASSWORD, sql);
+	}
+	
 	public static String contarRegistros(String tabelaNome){
-		
 		try {
 			criaConexao();
 			resultSet = statement.executeQuery(String.format("SELECT count(*) FROM %s", tabelaNome));
@@ -33,7 +37,6 @@ public class ConsultasDB {
 			e.printStackTrace();
 			return "-1";
 		}
-		
 	}
 	
 	public static boolean adicionarRegistros(String tabelaNome,String camposNome, String valorNome){
@@ -44,6 +47,7 @@ public class ConsultasDB {
 			return true;
 		} catch (Exception e) {
 			String erro = e.getMessage();
+			System.out.println(erro);
 			erro = erro.substring(0, erro.indexOf('\n'));
 			String errMatr = "ERRO: duplicar valor da chave viola a restrição de unicidade \"fk_cursoaluno\"";
 			String errMatrIgual = "ERRO: duplicar valor da chave viola a restrição de unicidade \"unik_matricula\"";

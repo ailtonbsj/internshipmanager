@@ -33,7 +33,7 @@ import javax.swing.text.DocumentFilter;
 import javax.swing.text.MaskFormatter;
 import javax.swing.text.PlainDocument;
 
-import io.github.ailtonbsj.internshipmanager.InternshipManager;
+import io.github.ailtonbsj.internshipmanager.Config;
 import io.github.ailtonbsj.internshipmanager.UpCaseField;
 import io.github.ailtonbsj.internshipmanager.cursos.ListaDeCursos;
 import io.github.ailtonbsj.internshipmanager.database.Constantes;
@@ -151,7 +151,7 @@ public class JanelaCriarAtualizarAlunos extends JInternalFrame {
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setIconifiable(true);
 		setClosable(true);
-		setBounds(100, 100, 739, 461);
+		setBounds(100, 100, 792, 468);
 		getContentPane().setLayout(new BorderLayout(0, 0));
 
 		JPanel panel_2 = new JPanel();
@@ -159,7 +159,7 @@ public class JanelaCriarAtualizarAlunos extends JInternalFrame {
 		panel_2.setLayout(null);
 
 		JPanel panelInfPessoal = new JPanel();
-		panelInfPessoal.setBounds(10, 11, 707, 178);
+		panelInfPessoal.setBounds(10, 11, 760, 178);
 		panel_2.add(panelInfPessoal);
 		panelInfPessoal.setBorder(new TitledBorder(null,
 				"Informa\u00E7\u00F5es Pessoais", TitledBorder.LEADING,
@@ -178,11 +178,11 @@ public class JanelaCriarAtualizarAlunos extends JInternalFrame {
 			}
 		});
 		lblNome.setLabelFor(textFieldNome);
-		textFieldNome.setBounds(47, 21, 391, 20);
+		textFieldNome.setBounds(54, 21, 384, 20);
 		panelInfPessoal.add(textFieldNome);
 		textFieldNome.setColumns(10);
 
-		JLabel lblcpf = new JLabel("cpf");
+		JLabel lblcpf = new JLabel("CPF");
 		lblcpf.setBounds(448, 24, 46, 14);
 		panelInfPessoal.add(lblcpf);
 		
@@ -201,11 +201,11 @@ public class JanelaCriarAtualizarAlunos extends JInternalFrame {
 		});
 
 		lblcpf.setLabelFor(ftfcpf);
-		ftfcpf.setBounds(483, 21, 216, 20);
+		ftfcpf.setBounds(481, 24, 267, 20);
 		panelInfPessoal.add(ftfcpf);
 
 		JLabel lblDataDeNascimento = new JLabel("Data de Nascimento");
-		lblDataDeNascimento.setBounds(448, 74, 111, 14);
+		lblDataDeNascimento.setBounds(448, 74, 153, 14);
 		panelInfPessoal.add(lblDataDeNascimento);
 		
 		try {
@@ -225,7 +225,7 @@ public class JanelaCriarAtualizarAlunos extends JInternalFrame {
 				liberaBotoes();
 			}
 		});
-		ftfNascimento.setBounds(557, 71, 142, 20);
+		ftfNascimento.setBounds(600, 74, 148, 20);
 		panelInfPessoal.add(ftfNascimento);
 		lblDataDeNascimento.setLabelFor(ftfNascimento);
 
@@ -235,18 +235,18 @@ public class JanelaCriarAtualizarAlunos extends JInternalFrame {
 
 		textFieldRG = new JTextField();
 		lblRg.setLabelFor(textFieldRG);
-		textFieldRG.setBounds(483, 46, 216, 20);
+		textFieldRG.setBounds(481, 49, 267, 20);
 		panelInfPessoal.add(textFieldRG);
 		textFieldRG.setColumns(10);
 
 		JLabel lblEndereo = new JLabel("Endere\u00E7o");
-		lblEndereo.setBounds(10, 99, 53, 14);
+		lblEndereo.setBounds(10, 99, 75, 14);
 		panelInfPessoal.add(lblEndereo);
 
 		textFieldEndereco = new JTextField();
 		textFieldEndereco.setDocument(new UpCaseField());
 		lblEndereo.setLabelFor(textFieldEndereco);
-		textFieldEndereco.setBounds(67, 96, 371, 20);
+		textFieldEndereco.setBounds(83, 96, 355, 20);
 		panelInfPessoal.add(textFieldEndereco);
 		textFieldEndereco.setColumns(10);
 
@@ -279,12 +279,12 @@ public class JanelaCriarAtualizarAlunos extends JInternalFrame {
 		textFieldBairro = new JTextField();
 		textFieldBairro.setDocument(new UpCaseField());
 		lblBairro.setLabelFor(textFieldBairro);
-		textFieldBairro.setBounds(483, 96, 215, 20);
+		textFieldBairro.setBounds(498, 99, 249, 20);
 		panelInfPessoal.add(textFieldBairro);
 		textFieldBairro.setColumns(10);
 
 		JLabel lblCidade = new JLabel("Cidade");
-		lblCidade.setBounds(10, 124, 46, 14);
+		lblCidade.setBounds(10, 124, 61, 14);
 		panelInfPessoal.add(lblCidade);
 
 		textFieldCidade = new JTextField();
@@ -310,28 +310,28 @@ public class JanelaCriarAtualizarAlunos extends JInternalFrame {
 
 		formattedTextFieldEmail = new JFormattedTextField();
 		lblEmail.setLabelFor(formattedTextFieldEmail);
-		formattedTextFieldEmail.setBounds(47, 146, 227, 20);
+		formattedTextFieldEmail.setBounds(54, 146, 208, 20);
 		panelInfPessoal.add(formattedTextFieldEmail);
 
 		JLabel lblCelular = new JLabel("Celular");
-		lblCelular.setBounds(284, 149, 46, 14);
+		lblCelular.setBounds(265, 149, 50, 14);
 		panelInfPessoal.add(lblCelular);
 
 		textFieldCelular = new JTextField();
 		textFieldCelular.setDocument(doc2);
 		lblCelular.setLabelFor(textFieldCelular);
-		textFieldCelular.setBounds(323, 146, 115, 20);
+		textFieldCelular.setBounds(324, 146, 114, 20);
 		panelInfPessoal.add(textFieldCelular);
 		textFieldCelular.setColumns(10);
 
 		JLabel lblTelefone = new JLabel("Telefone");
-		lblTelefone.setBounds(448, 149, 46, 14);
+		lblTelefone.setBounds(448, 149, 83, 14);
 		panelInfPessoal.add(lblTelefone);
 
 		textFieldTelefone = new JTextField();
 		textFieldTelefone.setDocument(doc3);
 		lblTelefone.setLabelFor(textFieldTelefone);
-		textFieldTelefone.setBounds(497, 146, 202, 20);
+		textFieldTelefone.setBounds(517, 149, 231, 20);
 		panelInfPessoal.add(textFieldTelefone);
 		textFieldTelefone.setColumns(10);
 
@@ -344,11 +344,11 @@ public class JanelaCriarAtualizarAlunos extends JInternalFrame {
 				.setModel(new DefaultComboBoxModel<String>(Constantes.estados));
 
 		lblUf.setLabelFor(comboBoxUf);
-		comboBoxUf.setBounds(483, 121, 214, 20);
+		comboBoxUf.setBounds(481, 124, 265, 20);
 		panelInfPessoal.add(comboBoxUf);
 
 		panelCursos = new JPanel();
-		panelCursos.setBounds(10, 189, 707, 222);
+		panelCursos.setBounds(10, 189, 760, 222);
 		panel_2.add(panelCursos);
 		panelCursos.setBorder(new TitledBorder(null, "Cursos",
 				TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -368,20 +368,20 @@ public class JanelaCriarAtualizarAlunos extends JInternalFrame {
 		panelAddCurso.add(comboBoxCursos);
 
 		JLabel lblMatricula = new JLabel("Matricula");
-		lblMatricula.setBounds(302, 45, 46, 14);
+		lblMatricula.setBounds(302, 45, 69, 14);
 		panelAddCurso.add(lblMatricula);
 
 		textFieldMatricula = new JTextField();
-		textFieldMatricula.setBounds(358, 42, 175, 20);
+		textFieldMatricula.setBounds(381, 42, 152, 20);
 		panelAddCurso.add(textFieldMatricula);
 		textFieldMatricula.setColumns(10);
 
 		JLabel lblSemestre = new JLabel("Semestre");
-		lblSemestre.setBounds(543, 45, 46, 14);
+		lblSemestre.setBounds(543, 45, 69, 14);
 		panelAddCurso.add(lblSemestre);
 
 		textFieldSemestre = new JTextField();
-		textFieldSemestre.setBounds(599, 42, 86, 20);
+		textFieldSemestre.setBounds(618, 42, 120, 20);
 		panelAddCurso.add(textFieldSemestre);
 		textFieldSemestre.setColumns(10);
 
@@ -407,7 +407,7 @@ public class JanelaCriarAtualizarAlunos extends JInternalFrame {
 					}
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "Preencha os campos de Matr�cula e Semestre");
+					JOptionPane.showMessageDialog(null, "Preencha os campos de Matrícula e Semestre");
 				}
 			}
 		});
@@ -467,7 +467,7 @@ public class JanelaCriarAtualizarAlunos extends JInternalFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				if (cpf == null) {
 					if(JanelaCriarAtualizarAlunos.cpf(ftfcpf.getText().replace("-", "").replace(".", "")))	inserirUsuario();
-					else JOptionPane.showMessageDialog(null, "cpf Inv�lido");
+					else JOptionPane.showMessageDialog(null, "CPF Inválido");
 				} else {
 					atualizaUsuario();
 				}
@@ -572,8 +572,7 @@ public class JanelaCriarAtualizarAlunos extends JInternalFrame {
 
 			sql = "SELECT cursos.id_curso, curso, matricula, semestre FROM cursos_alunos, cursos, alunos WHERE cursos_alunos.id_curso = cursos.id_curso AND cursos_alunos.cpf = alunos.cpf AND cursos_alunos.cpf = '"
 					+ reg + "'";
-			tableModel = new ResultSetSQL(InternshipManager.DATABASE_URL,
-					InternshipManager.USERNAME, InternshipManager.PASSWORD, sql);
+			tableModel = ConsultasDB.busca(sql);
 			table.setModel(tableModel);
 			table.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
@@ -653,7 +652,7 @@ public class JanelaCriarAtualizarAlunos extends JInternalFrame {
 	public void atualizaUsuario() {
 		captaDadosDosCampos();
 		String camposEValores = String
-				.format("rg =  '%s', nome = '%s', nascimento = '%s', endereco = '%s', bairro = '%s', cidade = '%s', email = '%s', cep = '%s', telefone = '%s', celular = '%s', mae = '%s', pai = '%s', uf = '%s'",
+				.format("rg =  %s, nome = '%s', nascimento = '%s', endereco = '%s', bairro = '%s', cidade = '%s', email = '%s', cep = '%s', telefone = '%s', celular = '%s', mae = '%s', pai = '%s', uf = '%s'",
 						rg, nome, nascimento, endereco, bairro, cidade, email,cep, telefone, celular, mae, pai, uf);
 		ConsultasDB.atualizarRegistros("alunos", camposEValores, "cpf", cpf);
 

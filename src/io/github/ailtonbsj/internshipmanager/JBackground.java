@@ -23,18 +23,3 @@ public class JBackground extends JDesktopPane {
 		
 	}
 }
-
-//try {
-//	Graphics2D g2d = (Graphics2D) g;
-//	double x = img.getWidth(null);
-//	double y = img.getHeight(null);
-//	g2d.scale(getWidth() / x, getHeight() / y);
-//	g2d.scale(getWidth()/x, getHeight()/ y);
-	
-//	g2d.scale(getWidth()/(2*x), getHeight()/(2*y));
-//	super.paintComponent(g2d);
-//	g2d.drawImage(img, 0, 0, this);
-//} catch (Exception e) {
-//	System.out.println("A imagem n�o pode ser inserido!");
-//}
-//super.paintComponent(g);

@@ -1,28 +1,25 @@
 package io.github.ailtonbsj.internshipmanager.alunos;
 
-import java.awt.EventQueue;
-
-import javax.swing.JInternalFrame;
-import javax.swing.JPanel;
-
 import java.awt.BorderLayout;
-import java.sql.SQLException;
-
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-
-import io.github.ailtonbsj.internshipmanager.InternshipManager;
-import io.github.ailtonbsj.internshipmanager.database.ResultSetSQL;
-
 import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.sql.SQLException;
 
+import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import io.github.ailtonbsj.internshipmanager.Config;
+import io.github.ailtonbsj.internshipmanager.database.ConsultasDB;
+import io.github.ailtonbsj.internshipmanager.database.ResultSetSQL;
 
 @SuppressWarnings("serial")
 public class JanelaListarAlunos extends JInternalFrame {
@@ -89,7 +86,7 @@ public class JanelaListarAlunos extends JInternalFrame {
 		scrollPane.setViewportView(table);
 		
 		try {
-            tableModel = new ResultSetSQL(InternshipManager.DATABASE_URL,InternshipManager.USERNAME,InternshipManager.PASSWORD,sql);
+            tableModel = ConsultasDB.busca(sql);
             table.setModel(tableModel);
             table.getColumnModel().getColumn(0).setPreferredWidth(250);
         } catch (SQLException ex) {

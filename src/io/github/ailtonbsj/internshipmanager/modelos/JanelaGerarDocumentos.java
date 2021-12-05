@@ -39,7 +39,9 @@ import org.apache.poi.hwpf.usermodel.Range;
 import org.apache.poi.hwpf.usermodel.Section;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 
+import io.github.ailtonbsj.internshipmanager.Config;
 import io.github.ailtonbsj.internshipmanager.InternshipManager;
+import io.github.ailtonbsj.internshipmanager.OperatingSystem;
 import io.github.ailtonbsj.internshipmanager.database.ConsultasDB;
 import io.github.ailtonbsj.internshipmanager.database.ConversorDates;
 import io.github.ailtonbsj.internshipmanager.estagios.Estagiario;
@@ -61,7 +63,7 @@ public class JanelaGerarDocumentos extends JInternalFrame {
 	private JLabel lbEmpresa;
 	private JLabel lbCnpj;
 	private Calendar cld;
-	private String[] semanas = {"Domingo"," "," "," "," "," ","S�bado"};
+	private String[] semanas = {"Domingo"," "," "," "," "," ","Sábado"};
 	
 	private int contClick = 0;
 	private JComboBox<Object> cbxMes;
@@ -93,7 +95,7 @@ public class JanelaGerarDocumentos extends JInternalFrame {
 		setIconifiable(true);
 		getContentPane().setSize(new Dimension(100, 0));
 		setTitle("Gerar Documentos");
-		setBounds(100, 100, 308, 433);
+		setBounds(100, 100, 491, 433);
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
@@ -134,11 +136,11 @@ public class JanelaGerarDocumentos extends JInternalFrame {
 		panel_2.add(lblAluno);
 		
 		JLabel lblMatrcula = new JLabel("Matr\u00EDcula");
-		lblMatrcula.setBounds(10, 22, 46, 14);
+		lblMatrcula.setBounds(10, 22, 75, 14);
 		panel_2.add(lblMatrcula);
 		
 		JLabel lblEmpresa = new JLabel("Empresa");
-		lblEmpresa.setBounds(10, 41, 46, 14);
+		lblEmpresa.setBounds(10, 41, 61, 14);
 		panel_2.add(lblEmpresa);
 		
 		JLabel lblCnpj = new JLabel("CNPJ");
@@ -147,22 +149,22 @@ public class JanelaGerarDocumentos extends JInternalFrame {
 		
 		lbAluno = new JLabel("Aluno");
 		lbAluno.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lbAluno.setBounds(66, 3, 216, 14);
+		lbAluno.setBounds(95, 3, 216, 14);
 		panel_2.add(lbAluno);
 		
 		lbMatricula = new JLabel("Matr\u00EDcula");
 		lbMatricula.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lbMatricula.setBounds(66, 20, 216, 14);
+		lbMatricula.setBounds(95, 20, 216, 14);
 		panel_2.add(lbMatricula);
 		
 		lbEmpresa = new JLabel("Empresa");
 		lbEmpresa.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lbEmpresa.setBounds(66, 37, 216, 14);
+		lbEmpresa.setBounds(95, 37, 216, 14);
 		panel_2.add(lbEmpresa);
 		
 		lbCnpj = new JLabel("CNPJ");
 		lbCnpj.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lbCnpj.setBounds(66, 54, 216, 14);
+		lbCnpj.setBounds(95, 54, 216, 14);
 		panel_2.add(lbCnpj);
 		
 		JLabel lblMs = new JLabel("M\u00EAs");
@@ -170,9 +172,9 @@ public class JanelaGerarDocumentos extends JInternalFrame {
 		panel_2.add(lblMs);
 		
 		cbxMes = new JComboBox<Object>();
-		cbxMes.setModel(new DefaultComboBoxModel<Object>(new String[] {"Janeiro", "Fevereiro", "Mar\u00E7o", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"}));
+		cbxMes.setModel(new DefaultComboBoxModel<Object>(new String[] {"Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"}));
 		cbxMes.setSelectedIndex(0);
-		cbxMes.setBounds(66, 71, 86, 20);
+		cbxMes.setBounds(95, 71, 150, 20);
 		panel_2.add(cbxMes);
 		
 		lblAno = new JLabel("Ano");
@@ -180,12 +182,13 @@ public class JanelaGerarDocumentos extends JInternalFrame {
 		panel_2.add(lblAno);
 		
 		tfAno = new JTextField();
-		tfAno.setBounds(66, 95, 86, 20);
+		tfAno.setBounds(95, 95, 150, 20);
 		panel_2.add(tfAno);
 		tfAno.setColumns(10);
 		
 		pastaModelo = new File(InternshipManager.class.getProtectionDomain().getCodeSource().getLocation().getPath());
 		pastaDocumentos = new File(pastaModelo.getParent(),"documentos");
+		pastaDocumentos.mkdirs();
 		pastaModelo = new File(pastaModelo.getParent(),"modelos");
 		atualizaLista();
 	}
@@ -208,7 +211,10 @@ public class JanelaGerarDocumentos extends JInternalFrame {
 			}
 		}
 		try {
-			Runtime.getRuntime().exec("explorer " + pastaDocumentos);
+			if(Config.OS == OperatingSystem.WINDOWS)
+				Runtime.getRuntime().exec("explorer " + pastaDocumentos);
+			else
+				Runtime.getRuntime().exec("browse " + pastaDocumentos);
 		} catch (IOException e) {
 		}
 		btGerar.setEnabled(true);
@@ -265,7 +271,7 @@ public class JanelaGerarDocumentos extends JInternalFrame {
 			int totalDiaMes = cld.getActualMaximum(Calendar.DAY_OF_MONTH);
 			
 			
-			if(arquivo.getName().equals("Frequ�ncia do Est�gio I.doc")){
+			if(arquivo.getName().equals("Frequência do Estágio I.doc")){
 				for(int i=1;i<=31;i++){
 					String tk  = "#DIA"+ i +"#";
 					if(i<=totalDiaMes){

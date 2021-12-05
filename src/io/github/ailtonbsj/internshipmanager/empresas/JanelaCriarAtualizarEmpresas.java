@@ -34,7 +34,7 @@ import javax.swing.text.DocumentFilter;
 import javax.swing.text.MaskFormatter;
 import javax.swing.text.PlainDocument;
 
-import io.github.ailtonbsj.internshipmanager.InternshipManager;
+import io.github.ailtonbsj.internshipmanager.Config;
 import io.github.ailtonbsj.internshipmanager.UpCaseField;
 import io.github.ailtonbsj.internshipmanager.database.Constantes;
 import io.github.ailtonbsj.internshipmanager.database.ConsultasDB;
@@ -126,7 +126,7 @@ public class JanelaCriarAtualizarEmpresas extends JInternalFrame {
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setIconifiable(true);
 		setClosable(true);
-		setBounds(100, 100, 739, 461);
+		setBounds(100, 100, 797, 458);
 		getContentPane().setLayout(new BorderLayout(0, 0));
 
 		JPanel panel_2 = new JPanel();
@@ -134,7 +134,7 @@ public class JanelaCriarAtualizarEmpresas extends JInternalFrame {
 		panel_2.setLayout(null);
 
 		JPanel panelInfPessoal = new JPanel();
-		panelInfPessoal.setBounds(10, 11, 707, 185);
+		panelInfPessoal.setBounds(10, 11, 765, 185);
 		panel_2.add(panelInfPessoal);
 		panelInfPessoal.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Dados da Empresa", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panelInfPessoal.setLayout(null);
@@ -151,12 +151,12 @@ public class JanelaCriarAtualizarEmpresas extends JInternalFrame {
 			}
 		});
 		lblNome.setLabelFor(textFieldNome);
-		textFieldNome.setBounds(47, 21, 391, 20);
+		textFieldNome.setBounds(72, 24, 391, 20);
 		panelInfPessoal.add(textFieldNome);
 		textFieldNome.setColumns(10);
 
 		JLabel lblCnpj = new JLabel("CNPJ");
-		lblCnpj.setBounds(448, 24, 46, 14);
+		lblCnpj.setBounds(475, 24, 46, 14);
 		panelInfPessoal.add(lblCnpj);
 
 		try {
@@ -175,61 +175,61 @@ public class JanelaCriarAtualizarEmpresas extends JInternalFrame {
 		});
 
 		lblCnpj.setLabelFor(formattedTextFieldCNPJ);
-		formattedTextFieldCNPJ.setBounds(483, 21, 216, 20);
+		formattedTextFieldCNPJ.setBounds(537, 24, 216, 20);
 		panelInfPessoal.add(formattedTextFieldCNPJ);
 
 		JLabel lblEndereo = new JLabel("Endere\u00E7o");
-		lblEndereo.setBounds(10, 80, 53, 14);
+		lblEndereo.setBounds(10, 80, 76, 14);
 		panelInfPessoal.add(lblEndereo);
 
 		textFieldEndereco = new JTextField();
 		textFieldEndereco.setDocument(new UpCaseField());
 		lblEndereo.setLabelFor(textFieldEndereco);
-		textFieldEndereco.setBounds(67, 77, 371, 20);
+		textFieldEndereco.setBounds(92, 80, 371, 20);
 		panelInfPessoal.add(textFieldEndereco);
 		textFieldEndereco.setColumns(10);
 
 		JLabel lblFantasia = new JLabel("Nome Fantasia");
-		lblFantasia.setBounds(10, 52, 80, 14);
+		lblFantasia.setBounds(10, 52, 106, 14);
 		panelInfPessoal.add(lblFantasia);
 
 		textFieldFantasia = new JTextField();
 		textFieldFantasia.setDocument(new UpCaseField());
 		lblFantasia.setLabelFor(textFieldFantasia);
-		textFieldFantasia.setBounds(93, 49, 345, 20);
+		textFieldFantasia.setBounds(123, 52, 340, 20);
 		panelInfPessoal.add(textFieldFantasia);
 		textFieldFantasia.setColumns(10);
 
 		JLabel lblBairro = new JLabel("Bairro");
-		lblBairro.setBounds(448, 55, 46, 14);
+		lblBairro.setBounds(475, 55, 46, 14);
 		panelInfPessoal.add(lblBairro);
 
 		textFieldBairro = new JTextField();
 		textFieldBairro.setDocument(new UpCaseField());
 		lblBairro.setLabelFor(textFieldBairro);
-		textFieldBairro.setBounds(483, 49, 215, 20);
+		textFieldBairro.setBounds(537, 52, 215, 20);
 		panelInfPessoal.add(textFieldBairro);
 		textFieldBairro.setColumns(10);
 
 		JLabel lblCidade = new JLabel("Cidade");
-		lblCidade.setBounds(448, 79, 46, 14);
+		lblCidade.setBounds(475, 79, 60, 14);
 		panelInfPessoal.add(lblCidade);
 
 		textFieldCidade = new JTextField();
 		textFieldCidade.setDocument(new UpCaseField());
 		lblCidade.setLabelFor(textFieldCidade);
-		textFieldCidade.setBounds(483, 77, 216, 20);
+		textFieldCidade.setBounds(537, 80, 216, 20);
 		panelInfPessoal.add(textFieldCidade);
 		textFieldCidade.setColumns(10);
 
 		JLabel lblCep = new JLabel("CEP");
-		lblCep.setBounds(229, 108, 46, 14);
+		lblCep.setBounds(245, 108, 36, 14);
 		panelInfPessoal.add(lblCep);
 
 		formattedTextFieldCep = new JFormattedTextField();
 		formattedTextFieldCep.setDocument(doc2);
 		lblCep.setLabelFor(formattedTextFieldCep);
-		formattedTextFieldCep.setBounds(259, 104, 179, 20);
+		formattedTextFieldCep.setBounds(284, 107, 179, 20);
 		panelInfPessoal.add(formattedTextFieldCep);
 
 		JLabel lblEmail = new JLabel("E-mail");
@@ -238,22 +238,22 @@ public class JanelaCriarAtualizarEmpresas extends JInternalFrame {
 
 		formattedTextFieldEmail = new JFormattedTextField();
 		lblEmail.setLabelFor(formattedTextFieldEmail);
-		formattedTextFieldEmail.setBounds(47, 104, 172, 20);
+		formattedTextFieldEmail.setBounds(62, 105, 172, 20);
 		panelInfPessoal.add(formattedTextFieldEmail);
 
 		JLabel lblTelefone = new JLabel("Telefone");
-		lblTelefone.setBounds(10, 133, 46, 14);
+		lblTelefone.setBounds(10, 133, 68, 14);
 		panelInfPessoal.add(lblTelefone);
 
 		textFieldTelefone = new JTextField();
 		textFieldTelefone.setDocument(doc1);
 		lblTelefone.setLabelFor(textFieldTelefone);
-		textFieldTelefone.setBounds(57, 130, 202, 20);
+		textFieldTelefone.setBounds(81, 131, 202, 20);
 		panelInfPessoal.add(textFieldTelefone);
 		textFieldTelefone.setColumns(10);
 
 		JLabel lblUf = new JLabel("UF");
-		lblUf.setBounds(448, 107, 46, 14);
+		lblUf.setBounds(475, 107, 46, 14);
 		panelInfPessoal.add(lblUf);
 
 		comboBoxUf = new JComboBox<String>();
@@ -261,12 +261,12 @@ public class JanelaCriarAtualizarEmpresas extends JInternalFrame {
 				.setModel(new DefaultComboBoxModel<String>(Constantes.estados));
 
 		lblUf.setLabelFor(comboBoxUf);
-		comboBoxUf.setBounds(483, 104, 216, 20);
+		comboBoxUf.setBounds(537, 107, 216, 20);
 		panelInfPessoal.add(comboBoxUf);
 		
 		textFieldRamo = new JTextField();
 		textFieldRamo.setDocument(new UpCaseField());
-		textFieldRamo.setBounds(334, 130, 365, 20);
+		textFieldRamo.setBounds(344, 133, 409, 20);
 		panelInfPessoal.add(textFieldRamo);
 		textFieldRamo.setColumns(10);
 		
@@ -276,19 +276,19 @@ public class JanelaCriarAtualizarEmpresas extends JInternalFrame {
 		panelInfPessoal.add(lblRamo);
 		
 		JLabel lblAtividades = new JLabel("Atividades");
-		lblAtividades.setBounds(10, 158, 68, 14);
+		lblAtividades.setBounds(10, 158, 86, 14);
 		panelInfPessoal.add(lblAtividades);
 		
 		textFieldAtividades = new JTextField();
 		textFieldAtividades.setDocument(new UpCaseField());
 		lblAtividades.setLabelFor(textFieldAtividades);
-		textFieldAtividades.setBounds(67, 155, 632, 20);
+		textFieldAtividades.setBounds(92, 158, 661, 20);
 		panelInfPessoal.add(textFieldAtividades);
 		textFieldAtividades.setColumns(10);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "Supervisores", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(10, 204, 703, 194);
+		panel.setBounds(10, 204, 765, 194);
 		panel_2.add(panel);
 		panel.setLayout(new BorderLayout(0, 0));
 		
@@ -317,7 +317,7 @@ public class JanelaCriarAtualizarEmpresas extends JInternalFrame {
 				}
 			}
 		});
-		btnAdicionarSupervisor.setBounds(10, 11, 148, 23);
+		btnAdicionarSupervisor.setBounds(10, 11, 203, 23);
 		panel_1.add(btnAdicionarSupervisor);
 		
 		btnExcluirSupervisor = new JButton("Excluir Supervisor");
@@ -334,7 +334,7 @@ public class JanelaCriarAtualizarEmpresas extends JInternalFrame {
 				}
 			}
 		});
-		btnExcluirSupervisor.setBounds(168, 11, 135, 23);
+		btnExcluirSupervisor.setBounds(225, 11, 174, 23);
 		panel_1.add(btnExcluirSupervisor);
 		
 		JLabel lblNomeDoSupervisor = new JLabel("Nome");
@@ -343,17 +343,17 @@ public class JanelaCriarAtualizarEmpresas extends JInternalFrame {
 		
 		tfNome = new JTextField();
 		tfNome.setDocument(new UpCaseField());
-		tfNome.setBounds(44, 45, 195, 20);
+		tfNome.setBounds(54, 46, 265, 20);
 		panel_1.add(tfNome);
 		tfNome.setColumns(10);
 		
 		JLabel lblCargo = new JLabel("Cargo");
-		lblCargo.setBounds(257, 48, 46, 14);
+		lblCargo.setBounds(329, 48, 46, 14);
 		panel_1.add(lblCargo);
 		
 		tfCargo = new JTextField();
 		tfCargo.setDocument(new UpCaseField());
-		tfCargo.setBounds(300, 45, 180, 20);
+		tfCargo.setBounds(384, 46, 359, 20);
 		panel_1.add(tfCargo);
 		tfCargo.setColumns(10);
 		
@@ -444,8 +444,7 @@ public class JanelaCriarAtualizarEmpresas extends JInternalFrame {
 			comboBoxUf.setSelectedItem(uf);
 			
 			sql = "SELECT id_supervisor,nome,cargo FROM supervisores WHERE cnpj = '"+ reg +"'";
-			tableModel = new ResultSetSQL(InternshipManager.DATABASE_URL,
-					InternshipManager.USERNAME, InternshipManager.PASSWORD, sql);
+			tableModel = ConsultasDB.busca(sql);
 			table.setModel(tableModel);
 			table.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 			

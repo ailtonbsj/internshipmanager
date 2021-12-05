@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import io.github.ailtonbsj.internshipmanager.InternshipManager;
+import io.github.ailtonbsj.internshipmanager.database.ConsultasDB;
 import io.github.ailtonbsj.internshipmanager.database.ResultSetSQL;
 
 @SuppressWarnings("serial")
@@ -59,7 +60,7 @@ public class JanelaListarEstagios extends JInternalFrame {
 		getContentPane().add(panel, BorderLayout.NORTH);
 		panel.setLayout(new BorderLayout(5, 0));
 		
-		JLabel lblFiltrarAlunos = new JLabel("Filtrar Empresas:");
+		JLabel lblFiltrarAlunos = new JLabel("Filtrar Estágios:");
 		panel.add(lblFiltrarAlunos, BorderLayout.WEST);
 		
 		textFieldFiltro = new JTextField();
@@ -85,7 +86,7 @@ public class JanelaListarEstagios extends JInternalFrame {
 		scrollPane.setViewportView(table);
 		
 		try {
-            tableModel = new ResultSetSQL(InternshipManager.DATABASE_URL,InternshipManager.USERNAME,InternshipManager.PASSWORD,sql);
+            tableModel = ConsultasDB.busca(sql);
             table.setModel(tableModel);
             table.getColumnModel().getColumn(0).setPreferredWidth(250);
         } catch (SQLException ex) {

@@ -56,9 +56,6 @@ public class InternshipManager extends JFrame {
 	JButton botaoAtualizarAlunos, botaoExcluirAlunos, botaoAdicionarAlunos, botaoAtualizarEmpresas, botaoExcluirEmpresas, botaoAdicionarEmpresas,
 	btAddEstagio, btRefEstagio, btDelEstagio, btGeraDoc;
 	
-    public static final String DATABASE_URL = "jdbc:postgresql://localhost:5432/internshipdb";
-    public static final String USERNAME = "postgres";
-    public static final String PASSWORD = "postgres";
     private JMenu mnAluno;
     private JMenu mnEmpresa;
     private JMenu mnEstagiandos;
@@ -75,7 +72,6 @@ public class InternshipManager extends JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-            	System.out.println(info.getName());
                 if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
@@ -106,7 +102,6 @@ public class InternshipManager extends JFrame {
 						try {
 							PostgreeBkpAndRestore.criaBanco();
 							ConsultasDB.criaTabelas();
-							//IOException | InterruptedException
 						} catch (Exception e1) {
 							System.out.println(e1.getMessage());
 						}
