@@ -1,7 +1,7 @@
 package io.github.ailtonbsj.internshipmanager.database;
 
 public class Constantes {
-	
+
 	public static String[] estados = {
 		"AC","AL","AP","AM","BA","CE",
 		"DF","ES","GO","MA","MT","MS",
@@ -9,5 +9,5 @@ public class Constantes {
 		"RJ","RN","RS","RO","RR","SC",
 		"SP","SE","TO"
 	};
-	
+
 }

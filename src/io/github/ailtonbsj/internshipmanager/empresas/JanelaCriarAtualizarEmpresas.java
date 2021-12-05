@@ -15,7 +15,6 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
-import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -24,6 +23,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
+import javax.swing.WindowConstants;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
@@ -57,7 +57,7 @@ public class JanelaCriarAtualizarEmpresas extends JInternalFrame {
 	private JButton btnSalvar;
 	private JTextField textFieldRamo;
 	private JTextField textFieldAtividades;
-	
+
 	private String cnpj;
 	private String nome;
 	private String nomeFantasia;
@@ -80,6 +80,7 @@ public class JanelaCriarAtualizarEmpresas extends JInternalFrame {
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					JanelaCriarAtualizarEmpresas frame = new JanelaCriarAtualizarEmpresas();
@@ -95,14 +96,14 @@ public class JanelaCriarAtualizarEmpresas extends JInternalFrame {
 		PlainDocument doc1 = new PlainDocument();
 		doc1.setDocumentFilter(new DocumentFilter() {
 		    @Override
-		    public void insertString(FilterBypass fb, int off, String str, AttributeSet attr) 
-		        throws BadLocationException 
+		    public void insertString(FilterBypass fb, int off, String str, AttributeSet attr)
+		        throws BadLocationException
 		    {
 		        fb.insertString(off, str.replaceAll("\\D++", ""), attr);  // remove non-digits
-		    } 
+		    }
 		    @Override
-		    public void replace(FilterBypass fb, int off, int len, String str, AttributeSet attr) 
-		        throws BadLocationException 
+		    public void replace(FilterBypass fb, int off, int len, String str, AttributeSet attr)
+		        throws BadLocationException
 		    {
 		        fb.replace(off, len, str.replaceAll("\\D++", ""), attr);  // remove non-digits
 		    }
@@ -110,19 +111,19 @@ public class JanelaCriarAtualizarEmpresas extends JInternalFrame {
 		PlainDocument doc2 = new PlainDocument();
 		doc2.setDocumentFilter(new DocumentFilter() {
 		    @Override
-		    public void insertString(FilterBypass fb, int off, String str, AttributeSet attr) 
-		        throws BadLocationException 
+		    public void insertString(FilterBypass fb, int off, String str, AttributeSet attr)
+		        throws BadLocationException
 		    {
 		        fb.insertString(off, str.replaceAll("\\D++", ""), attr);  // remove non-digits
-		    } 
+		    }
 		    @Override
-		    public void replace(FilterBypass fb, int off, int len, String str, AttributeSet attr) 
-		        throws BadLocationException 
+		    public void replace(FilterBypass fb, int off, int len, String str, AttributeSet attr)
+		        throws BadLocationException
 		    {
 		        fb.replace(off, len, str.replaceAll("\\D++", ""), attr);  // remove non-digits
 		    }
 		});
-		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 		setIconifiable(true);
 		setClosable(true);
 		setBounds(100, 100, 797, 458);
@@ -145,6 +146,7 @@ public class JanelaCriarAtualizarEmpresas extends JInternalFrame {
 		textFieldNome = new JTextField();
 		textFieldNome.setDocument(new UpCaseField());
 		textFieldNome.addCaretListener(new CaretListener() {
+			@Override
 			public void caretUpdate(CaretEvent arg0) {
 				liberaBotoes();
 			}
@@ -165,9 +167,10 @@ public class JanelaCriarAtualizarEmpresas extends JInternalFrame {
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		}
-		
-		
+
+
 		formattedTextFieldCNPJ.addCaretListener(new CaretListener() {
+			@Override
 			public void caretUpdate(CaretEvent arg0) {
 				liberaBotoes();
 			}
@@ -255,49 +258,50 @@ public class JanelaCriarAtualizarEmpresas extends JInternalFrame {
 		lblUf.setBounds(475, 107, 46, 14);
 		panelInfPessoal.add(lblUf);
 
-		comboBoxUf = new JComboBox<String>();
+		comboBoxUf = new JComboBox<>();
 		comboBoxUf
-				.setModel(new DefaultComboBoxModel<String>(Constantes.estados));
+				.setModel(new DefaultComboBoxModel<>(Constantes.estados));
 
 		lblUf.setLabelFor(comboBoxUf);
 		comboBoxUf.setBounds(537, 107, 216, 20);
 		panelInfPessoal.add(comboBoxUf);
-		
+
 		textFieldRamo = new JTextField();
 		textFieldRamo.setDocument(new UpCaseField());
 		textFieldRamo.setBounds(344, 133, 409, 20);
 		panelInfPessoal.add(textFieldRamo);
 		textFieldRamo.setColumns(10);
-		
+
 		JLabel lblRamo = new JLabel("Ramo");
 		lblRamo.setLabelFor(textFieldRamo);
 		lblRamo.setBounds(301, 133, 46, 14);
 		panelInfPessoal.add(lblRamo);
-		
+
 		JLabel lblAtividades = new JLabel("Atividades");
 		lblAtividades.setBounds(10, 158, 86, 14);
 		panelInfPessoal.add(lblAtividades);
-		
+
 		textFieldAtividades = new JTextField();
 		textFieldAtividades.setDocument(new UpCaseField());
 		lblAtividades.setLabelFor(textFieldAtividades);
 		textFieldAtividades.setBounds(92, 158, 661, 20);
 		panelInfPessoal.add(textFieldAtividades);
 		textFieldAtividades.setColumns(10);
-		
+
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "Supervisores", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel.setBounds(10, 204, 765, 194);
 		panel_2.add(panel);
 		panel.setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel panel_1 = new JPanel();
 		panel_1.setPreferredSize(new Dimension(10, 70));
 		panel.add(panel_1, BorderLayout.SOUTH);
 		panel_1.setLayout(null);
-		
+
 		btnAdicionarSupervisor = new JButton("Adicionar Supervisor");
 		btnAdicionarSupervisor.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				String nome = tfNome.getText();
 				String cargo = tfCargo.getText();
@@ -318,9 +322,10 @@ public class JanelaCriarAtualizarEmpresas extends JInternalFrame {
 		});
 		btnAdicionarSupervisor.setBounds(10, 11, 203, 23);
 		panel_1.add(btnAdicionarSupervisor);
-		
+
 		btnExcluirSupervisor = new JButton("Excluir Supervisor");
 		btnExcluirSupervisor.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				String valor1 = linhaSelecionada(0);
 				if (!valor1.equals("")) {
@@ -335,30 +340,30 @@ public class JanelaCriarAtualizarEmpresas extends JInternalFrame {
 		});
 		btnExcluirSupervisor.setBounds(225, 11, 174, 23);
 		panel_1.add(btnExcluirSupervisor);
-		
+
 		JLabel lblNomeDoSupervisor = new JLabel("Nome");
 		lblNomeDoSupervisor.setBounds(10, 48, 46, 14);
 		panel_1.add(lblNomeDoSupervisor);
-		
+
 		tfNome = new JTextField();
 		tfNome.setDocument(new UpCaseField());
 		tfNome.setBounds(54, 46, 265, 20);
 		panel_1.add(tfNome);
 		tfNome.setColumns(10);
-		
+
 		JLabel lblCargo = new JLabel("Cargo");
 		lblCargo.setBounds(329, 48, 46, 14);
 		panel_1.add(lblCargo);
-		
+
 		tfCargo = new JTextField();
 		tfCargo.setDocument(new UpCaseField());
 		tfCargo.setBounds(384, 46, 359, 20);
 		panel_1.add(tfCargo);
 		tfCargo.setColumns(10);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		panel.add(scrollPane, BorderLayout.CENTER);
-		
+
 		table = new JTable();
 		scrollPane.setViewportView(table);
 
@@ -368,6 +373,7 @@ public class JanelaCriarAtualizarEmpresas extends JInternalFrame {
 
 		btnNovoEmpresa = new JButton("Nova Empresa");
 		btnNovoEmpresa.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				limparCampos();
 			}
@@ -376,6 +382,7 @@ public class JanelaCriarAtualizarEmpresas extends JInternalFrame {
 
 		btnRemoverEmpresa = new JButton("Remover Empresa");
 		btnRemoverEmpresa.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (ConsultasDB.excluirEmpresas(cnpj)) {
 					setVisible(false);
@@ -386,6 +393,7 @@ public class JanelaCriarAtualizarEmpresas extends JInternalFrame {
 
 		btnSalvar = new JButton("Salvar Altera\u00E7\u00F5es");
 		btnSalvar.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (cnpj == null) {
 					inserirEmpresa();
@@ -397,13 +405,13 @@ public class JanelaCriarAtualizarEmpresas extends JInternalFrame {
 		panelBotoes.add(btnSalvar);
 
 	}
-	
+
 	public void atualizarCampos(String reg) {
 		try {
 			Statement busca = ConsultasDB.getStatement();
 			ResultSet resultado = busca.executeQuery("SELECT * FROM empresas WHERE cnpj = '" + reg	+ "'");
 			resultado.next();
-			
+
 			cnpj = (resultado.getObject("cnpj") == null) ? "" : resultado
 					.getObject("cnpj").toString();
 			nome = (resultado.getObject("nome") == null) ? "" : resultado
@@ -428,7 +436,7 @@ public class JanelaCriarAtualizarEmpresas extends JInternalFrame {
 					.getObject("ramo").toString();
 			atividades = (resultado.getObject("atividades") == null) ? "" : resultado
 					.getObject("atividades").toString();
-			
+
 			formattedTextFieldCNPJ.setText(cnpj);
 			textFieldNome.setText(nome);
 			textFieldFantasia.setText(nomeFantasia);
@@ -441,22 +449,22 @@ public class JanelaCriarAtualizarEmpresas extends JInternalFrame {
 			textFieldAtividades.setText(atividades);
 			textFieldTelefone.setText(telefone);
 			comboBoxUf.setSelectedItem(uf);
-			
+
 			sql = "SELECT id_supervisor,nome,cargo FROM supervisores WHERE cnpj = '"+ reg +"'";
 			tableModel = ConsultasDB.busca(sql);
 			table.setModel(tableModel);
 			table.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-			
+
 			formattedTextFieldCNPJ.setEditable(false);
 			btnNovoEmpresa.setEnabled(true);
 			btnRemoverEmpresa.setEnabled(true);
 			btnSalvar.setEnabled(true);
 			setEnablePaneSupervisores(true);
-			
+
 		} catch (SQLException e) {
 		}
 	}
-	
+
 	public void inserirEmpresa(){
 		boolean result = false;
 		captaDadosDosCampos();
@@ -464,18 +472,18 @@ public class JanelaCriarAtualizarEmpresas extends JInternalFrame {
 		result = ConsultasDB.adicionarRegistros("empresas", "cnpj, nome, nome_fantasia, endereco, bairro, cidade, uf,cep,email, telefone,ramo,atividades", valores);
 		if(result){
 			atualizarCampos(cnpj);
-		}		
+		}
 	}
-	
+
 	public void atualizaEmpresa(){
 		captaDadosDosCampos();
-		
+
 		String camposEValores = String
 				.format("nome = '%s', endereco = '%s', bairro = '%s', cidade = '%s', email = '%s', cep = '%s', telefone = '%s', uf = '%s', nome_fantasia = '%s', ramo = '%s', atividades = '%s'",
 						nome, endereco, bairro, cidade, email, cep, telefone, uf, nomeFantasia, ramo, atividades);
 		ConsultasDB.atualizarRegistros("empresas", camposEValores, "cnpj", cnpj);
 	}
-	
+
 	public void captaDadosDosCampos(){
 		cnpj = formattedTextFieldCNPJ.getText().replace("_", "").replace(".", "").replace("-", "").replace("/", "");
 		nome = textFieldNome.getText();
@@ -490,7 +498,7 @@ public class JanelaCriarAtualizarEmpresas extends JInternalFrame {
 		ramo = textFieldRamo.getText();
 		atividades = textFieldAtividades.getText();
 	}
-	
+
 	public void limparCampos() {
 		cnpj = null;
 
@@ -513,7 +521,7 @@ public class JanelaCriarAtualizarEmpresas extends JInternalFrame {
 		btnSalvar.setEnabled(false);
 		setEnablePaneSupervisores(false);
 	}
-	
+
 	public void setEnablePaneSupervisores(boolean v) {
 		table.setEnabled(v);
 		if (!v) {
@@ -525,7 +533,7 @@ public class JanelaCriarAtualizarEmpresas extends JInternalFrame {
 		btnAdicionarSupervisor.setEnabled(v);
 		btnExcluirSupervisor.setEnabled(v);
 	}
-	
+
 	public void liberaBotoes() {
 		if (!formattedTextFieldCNPJ.getText().replace("_", "").replace(".", "").replace("-", "").replace("/", "").isEmpty()
 				&& !textFieldNome.getText().isEmpty()) {
@@ -534,7 +542,7 @@ public class JanelaCriarAtualizarEmpresas extends JInternalFrame {
 			btnSalvar.setEnabled(false);
 		}
 	}
-	
+
 	public String linhaSelecionada(int posicao) {
 
 		if (table.getSelectedRow() != -1) {

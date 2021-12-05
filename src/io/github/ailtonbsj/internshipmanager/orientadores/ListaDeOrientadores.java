@@ -15,7 +15,7 @@ public class ListaDeOrientadores {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
+
 	public ListaDeOrientadores(long id, String nome){
 		setId(id);
 		setNome(nome);

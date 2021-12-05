@@ -1,18 +1,18 @@
 package io.github.ailtonbsj.internshipmanager.estagios;
 
 public class ListaDeSupervisores {
-	
+
 	private long id;
 	private String nome;
 	private String cargo;
-	
+
 	public ListaDeSupervisores(long id, String nome, String cargo) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.cargo = cargo;
 	}
-	
+
 	public long getId() {
 		return id;
 	}
@@ -31,6 +31,6 @@ public class ListaDeSupervisores {
 	public void setCargo(String cargo) {
 		this.cargo = cargo;
 	}
-	
+
 
 }

@@ -38,6 +38,14 @@ O Internship Manager é um sistema capaz de gerenciar documentos de alunos em es
 
 ![Tela 3](https://a.fsdn.com/con/app/proj/internshipmanager/screenshots/3.png)
 
+## Campos dinâmicos para modelos
+
+Campos aos quais você pode adicionar em um modelo de documento Word 2007 (.docx) dentro da pasta `modelos`.
+
+```
+#ORIENTADOR# #CNPJ# #MATRICULA# #DATA_INICIO# #DATA_FIM# #ATIVALUNO# #DATA_CADASTRO# #SETOR_ESTAGIO# #HORARIO# #EMPRESA# #NOME_FANTASIA# #ENDEMPRESA# #BAIRROEMPRESA# #CIDADEEMPRESA# #UFEMPRESA# #CEPEMPRESA# #EMAILEMPRESA# #TELEFONEEMPRESA# #RAMO# #ATIVEMPRESA# #SEMESTRE# #CPF# #CURSO# #RG# #ALUNO# #NASCIMENTO# #ENDALUNO# #BAIRROALUNO# #CIDADEALUNO# #EMAILALUNO# #CEPALUNO# #TELEFONEALUNO# #CELULARALUNO# #MAE# #PAI# #UFALUNO#
+```
+
 ## Links
 
  - [Apache POI](https://poi.apache.org/)

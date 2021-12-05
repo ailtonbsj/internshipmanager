@@ -15,7 +15,6 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
-import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -23,6 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.WindowConstants;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
@@ -83,12 +83,13 @@ public class JanelaCriarAtualizarAlunos extends JInternalFrame {
 	private JButton btnRemoverAluno;
 	private JButton btnNovoAluno;
 	private JButton btnSalvar;
-	
+
 	public char[] modelocpf = "___.___.___-__".toCharArray();
 	public int indexModelocpf = 0;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					JanelaCriarAtualizarAlunos frame = new JanelaCriarAtualizarAlunos();
@@ -104,14 +105,14 @@ public class JanelaCriarAtualizarAlunos extends JInternalFrame {
 		PlainDocument doc1 = new PlainDocument();
 		doc1.setDocumentFilter(new DocumentFilter() {
 		    @Override
-		    public void insertString(FilterBypass fb, int off, String str, AttributeSet attr) 
-		        throws BadLocationException 
+		    public void insertString(FilterBypass fb, int off, String str, AttributeSet attr)
+		        throws BadLocationException
 		    {
 		        fb.insertString(off, str.replaceAll("\\D++", ""), attr);  // remove non-digits
-		    } 
+		    }
 		    @Override
-		    public void replace(FilterBypass fb, int off, int len, String str, AttributeSet attr) 
-		        throws BadLocationException 
+		    public void replace(FilterBypass fb, int off, int len, String str, AttributeSet attr)
+		        throws BadLocationException
 		    {
 		        fb.replace(off, len, str.replaceAll("\\D++", ""), attr);  // remove non-digits
 		    }
@@ -119,14 +120,14 @@ public class JanelaCriarAtualizarAlunos extends JInternalFrame {
 		PlainDocument doc2 = new PlainDocument();
 		doc2.setDocumentFilter(new DocumentFilter() {
 		    @Override
-		    public void insertString(FilterBypass fb, int off, String str, AttributeSet attr) 
-		        throws BadLocationException 
+		    public void insertString(FilterBypass fb, int off, String str, AttributeSet attr)
+		        throws BadLocationException
 		    {
 		        fb.insertString(off, str.replaceAll("\\D++", ""), attr);  // remove non-digits
-		    } 
+		    }
 		    @Override
-		    public void replace(FilterBypass fb, int off, int len, String str, AttributeSet attr) 
-		        throws BadLocationException 
+		    public void replace(FilterBypass fb, int off, int len, String str, AttributeSet attr)
+		        throws BadLocationException
 		    {
 		        fb.replace(off, len, str.replaceAll("\\D++", ""), attr);  // remove non-digits
 		    }
@@ -134,20 +135,20 @@ public class JanelaCriarAtualizarAlunos extends JInternalFrame {
 		PlainDocument doc3 = new PlainDocument();
 		doc3.setDocumentFilter(new DocumentFilter() {
 		    @Override
-		    public void insertString(FilterBypass fb, int off, String str, AttributeSet attr) 
-		        throws BadLocationException 
+		    public void insertString(FilterBypass fb, int off, String str, AttributeSet attr)
+		        throws BadLocationException
 		    {
 		        fb.insertString(off, str.replaceAll("\\D++", ""), attr);  // remove non-digits
-		    } 
+		    }
 		    @Override
-		    public void replace(FilterBypass fb, int off, int len, String str, AttributeSet attr) 
-		        throws BadLocationException 
+		    public void replace(FilterBypass fb, int off, int len, String str, AttributeSet attr)
+		        throws BadLocationException
 		    {
 		        fb.replace(off, len, str.replaceAll("\\D++", ""), attr);  // remove non-digits
 		    }
 		});
-		
-		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+
+		setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 		setIconifiable(true);
 		setClosable(true);
 		setBounds(100, 100, 792, 468);
@@ -172,6 +173,7 @@ public class JanelaCriarAtualizarAlunos extends JInternalFrame {
 		textFieldNome = new JTextField();
 		textFieldNome.setDocument(new UpCaseField());
 		textFieldNome.addCaretListener(new CaretListener() {
+			@Override
 			public void caretUpdate(CaretEvent arg0) {
 				liberaBotoes();
 			}
@@ -184,7 +186,7 @@ public class JanelaCriarAtualizarAlunos extends JInternalFrame {
 		JLabel lblcpf = new JLabel("CPF");
 		lblcpf.setBounds(448, 24, 46, 14);
 		panelInfPessoal.add(lblcpf);
-		
+
 		try {
 			MaskFormatter maskcpf = new MaskFormatter("###.###.###-##");
 			maskcpf.setPlaceholderCharacter('_');
@@ -192,8 +194,9 @@ public class JanelaCriarAtualizarAlunos extends JInternalFrame {
 		} catch (ParseException e2) {
 			e2.printStackTrace();
 		}
-		
+
 		ftfcpf.addCaretListener(new CaretListener() {
+			@Override
 			public void caretUpdate(CaretEvent arg0) {
 				liberaBotoes();
 			}
@@ -206,20 +209,21 @@ public class JanelaCriarAtualizarAlunos extends JInternalFrame {
 		JLabel lblDataDeNascimento = new JLabel("Data de Nascimento");
 		lblDataDeNascimento.setBounds(448, 74, 153, 14);
 		panelInfPessoal.add(lblDataDeNascimento);
-		
+
 		try {
 			MaskFormatter maskData = new MaskFormatter("##/##/####");
 			maskData.setPlaceholderCharacter('_');
 			ftfNascimento = new JFormattedTextField(maskData);
-			
+
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		}
-		
-		
-		
-		
+
+
+
+
 		ftfNascimento.addCaretListener(new CaretListener() {
+			@Override
 			public void caretUpdate(CaretEvent arg0) {
 				liberaBotoes();
 			}
@@ -338,9 +342,9 @@ public class JanelaCriarAtualizarAlunos extends JInternalFrame {
 		lblUf.setBounds(448, 124, 46, 14);
 		panelInfPessoal.add(lblUf);
 
-		comboBoxUf = new JComboBox<String>();
+		comboBoxUf = new JComboBox<>();
 		comboBoxUf
-				.setModel(new DefaultComboBoxModel<String>(Constantes.estados));
+				.setModel(new DefaultComboBoxModel<>(Constantes.estados));
 
 		lblUf.setLabelFor(comboBoxUf);
 		comboBoxUf.setBounds(481, 124, 265, 20);
@@ -362,7 +366,7 @@ public class JanelaCriarAtualizarAlunos extends JInternalFrame {
 		lblCurso.setBounds(10, 45, 46, 14);
 		panelAddCurso.add(lblCurso);
 
-		comboBoxCursos = new JComboBox<String>();
+		comboBoxCursos = new JComboBox<>();
 		comboBoxCursos.setBounds(53, 42, 238, 20);
 		panelAddCurso.add(comboBoxCursos);
 
@@ -386,6 +390,7 @@ public class JanelaCriarAtualizarAlunos extends JInternalFrame {
 
 		btnAdicionar = new JButton("Adicionar Curso");
 		btnAdicionar.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				String matriculaCurso = textFieldMatricula.getText();
 				String semestre = textFieldSemestre.getText();
@@ -415,6 +420,7 @@ public class JanelaCriarAtualizarAlunos extends JInternalFrame {
 
 		btnExcluirCurso = new JButton("Excluir Curso");
 		btnExcluirCurso.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				String valor1 = linhaSelecionada(0);
 				if (!valor1.equals("")) {
@@ -445,6 +451,7 @@ public class JanelaCriarAtualizarAlunos extends JInternalFrame {
 
 		btnNovoAluno = new JButton("Novo Aluno");
 		btnNovoAluno.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				limparCampos();
 			}
@@ -453,6 +460,7 @@ public class JanelaCriarAtualizarAlunos extends JInternalFrame {
 
 		btnRemoverAluno = new JButton("Remover Aluno");
 		btnRemoverAluno.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (ConsultasDB.excluirAlunos(cpf)) {
 					setVisible(false);
@@ -463,6 +471,7 @@ public class JanelaCriarAtualizarAlunos extends JInternalFrame {
 
 		btnSalvar = new JButton("Salvar Altera\u00E7\u00F5es");
 		btnSalvar.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (cpf == null) {
 					if(JanelaCriarAtualizarAlunos.cpf(ftfcpf.getText().replace("-", "").replace(".", "")))	inserirUsuario();
@@ -587,7 +596,7 @@ public class JanelaCriarAtualizarAlunos extends JInternalFrame {
 	}
 
 	public void preencheListaDeCursos() {
-		lista = new ArrayList<ListaDeCursos>();
+		lista = new ArrayList<>();
 
 		try {
 
@@ -611,7 +620,7 @@ public class JanelaCriarAtualizarAlunos extends JInternalFrame {
 	}
 
 	public void liberaBotoes() {
-		
+
 		if(
 				!textFieldNome.getText().isEmpty() &&
 				!ftfcpf.getText().replace("_", "").replace(".","").replace("-","").isEmpty() &&
@@ -637,7 +646,7 @@ public class JanelaCriarAtualizarAlunos extends JInternalFrame {
 		pai = textFieldPai.getText();
 		uf = comboBoxUf.getItemAt(comboBoxUf.getSelectedIndex());
 	}
-	
+
 	public void inserirUsuario(){
 		boolean result = false;
 		captaDadosDosCampos();
@@ -647,7 +656,7 @@ public class JanelaCriarAtualizarAlunos extends JInternalFrame {
 			atualizarCampos(cpf);
 		}
 	}
-	
+
 	public void atualizaUsuario() {
 		captaDadosDosCampos();
 		String camposEValores = String
@@ -668,13 +677,13 @@ public class JanelaCriarAtualizarAlunos extends JInternalFrame {
 		}
 		return "";
 	}
-	
+
 	public static boolean cpf(String cpf){
 		String str;
 		int[] verificador = new int[2];
 		str = cpf.replace("-", "");
 		str = str.replace(".", "");
-		
+
 		if (cpf.equals("00000000000") || cpf.equals("11111111111") ||
 		        cpf.equals("22222222222") || cpf.equals("33333333333") ||
 		        cpf.equals("44444444444") || cpf.equals("55555555555") ||
@@ -720,11 +729,11 @@ public class JanelaCriarAtualizarAlunos extends JInternalFrame {
 				return false;
 			}
 		}
-		
+
 		else{
-			
+
 			return false;
-		
-		}		
+
+		}
 	}
 }

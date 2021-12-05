@@ -19,7 +19,6 @@ import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
-import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -27,6 +26,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.WindowConstants;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
@@ -44,12 +44,12 @@ import io.github.ailtonbsj.internshipmanager.orientadores.ListaDeOrientadores;
 
 @SuppressWarnings("serial")
 public class JanelaCriarAtualizarEstagios extends JInternalFrame {
-	
+
 	private ResultSetSQL tableModelAluno;
 	private ResultSetSQL tableModelEmpresa;
 	static final String sqlAluno = "SELECT nome,alunos.cpf,matricula,nascimento,endereco,bairro,cidade,email,telefone,celular FROM alunos,cursos_alunos WHERE (alunos.cpf = cursos_alunos.cpf)";
 	static final String sqlEmpresa = "SELECT nome,nome_fantasia,cnpj,endereco,bairro,cidade,telefone,ramo FROM empresas";
-	
+
 	private JTextField tfFiltroAluno;
 	private JTable tbAluno;
 	private JTextField tfFiltroEmpresa;
@@ -57,7 +57,7 @@ public class JanelaCriarAtualizarEstagios extends JInternalFrame {
 	private JTextField tfAtividades;
 	private JLabel lbAluno;
 	private JLabel lbEmpresa;
-	
+
 	private String matricula;
 	private String cnpj;
 	private String nome;
@@ -95,6 +95,7 @@ public class JanelaCriarAtualizarEstagios extends JInternalFrame {
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					JanelaCriarAtualizarEstagios frame = new JanelaCriarAtualizarEstagios();
@@ -112,22 +113,22 @@ public class JanelaCriarAtualizarEstagios extends JInternalFrame {
 	public JanelaCriarAtualizarEstagios() {
 		setResizable(true);
 		setClosable(true);
-		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 		setIconifiable(true);
 		setTitle("Est\u00E1gios");
 		setBounds(100, 100, 994, 479);
 		getContentPane().setLayout(null);
-		
+
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "Aluno", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel.setBounds(3, 0, 980, 153);
 		getContentPane().add(panel);
 		panel.setLayout(null);
-		
+
 		JLabel lblNewLabel = new JLabel("Filtro:");
 		lblNewLabel.setBounds(10, 21, 46, 14);
 		panel.add(lblNewLabel);
-		
+
 		tfFiltroAluno = new JTextField();
 		tfFiltroAluno.addKeyListener(new KeyAdapter() {
 			@Override
@@ -138,11 +139,11 @@ public class JanelaCriarAtualizarEstagios extends JInternalFrame {
 		tfFiltroAluno.setBounds(59, 19, 324, 20);
 		panel.add(tfFiltroAluno);
 		tfFiltroAluno.setColumns(10);
-		
+
 		spAluno = new JScrollPane();
 		spAluno.setBounds(10, 46, 958, 78);
 		panel.add(spAluno);
-		
+
 		tbAluno = new JTable();
 		tbAluno.addMouseListener(new MouseAdapter() {
 			@Override
@@ -161,30 +162,30 @@ public class JanelaCriarAtualizarEstagios extends JInternalFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-		
+
 		tbAluno.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-		
+
 		spAluno.setViewportView(tbAluno);
-		
+
 		JLabel lblAlunoSelecionado = new JLabel("Aluno Selecionado:");
 		lblAlunoSelecionado.setBounds(10, 128, 145, 14);
 		panel.add(lblAlunoSelecionado);
-		
+
 		lbAluno = new JLabel("");
 		lbAluno.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lbAluno.setBounds(153, 129, 815, 14);
 		panel.add(lbAluno);
-		
+
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(null, "Empresa", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1.setBounds(3, 153, 980, 153);
 		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
-		
+
 		JLabel label = new JLabel("Filtro:");
 		label.setBounds(10, 24, 46, 14);
 		panel_1.add(label);
-		
+
 		tfFiltroEmpresa = new JTextField();
 		tfFiltroEmpresa.addKeyListener(new KeyAdapter() {
 			@Override
@@ -195,11 +196,11 @@ public class JanelaCriarAtualizarEstagios extends JInternalFrame {
 		tfFiltroEmpresa.setColumns(10);
 		tfFiltroEmpresa.setBounds(59, 22, 324, 20);
 		panel_1.add(tfFiltroEmpresa);
-		
+
 		spEmpresa = new JScrollPane();
 		spEmpresa.setBounds(10, 49, 958, 77);
 		panel_1.add(spEmpresa);
-		
+
 		tbEmpresa = new JTable();
 		tbEmpresa.addMouseListener(new MouseAdapter() {
 			@Override
@@ -219,30 +220,30 @@ public class JanelaCriarAtualizarEstagios extends JInternalFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-		
+
 		tbEmpresa.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-		
+
 		spEmpresa.setViewportView(tbEmpresa);
-		
+
 		JLabel lblEmpresaSelecionada = new JLabel("Empresa Selecionada:");
 		lblEmpresaSelecionada.setBounds(10, 131, 157, 14);
 		panel_1.add(lblEmpresaSelecionada);
-		
+
 		lbEmpresa = new JLabel("");
 		lbEmpresa.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lbEmpresa.setBounds(174, 132, 794, 14);
 		panel_1.add(lbEmpresa);
-		
+
 		JPanel panel_2 = new JPanel();
 		panel_2.setBorder(new TitledBorder(null, "Informa\u00E7\u00F5es", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_2.setBounds(3, 309, 980, 100);
 		getContentPane().add(panel_2);
 		panel_2.setLayout(null);
-		
+
 		JLabel lblDataDeInicio = new JLabel("Data de Inicio");
 		lblDataDeInicio.setBounds(10, 21, 106, 14);
 		panel_2.add(lblDataDeInicio);
-		
+
 		try {
 			MaskFormatter maskDataIni = new MaskFormatter("##/##/####");
 			maskDataIni.setPlaceholderCharacter('_');
@@ -251,22 +252,24 @@ public class JanelaCriarAtualizarEstagios extends JInternalFrame {
 			e1.printStackTrace();
 		}
 		tfDataInicio.addCaretListener(new CaretListener() {
+			@Override
 			public void caretUpdate(CaretEvent arg0) {
 				liberaBotoes();
 			}
 		});
 		tfDataInicio.setBounds(115, 19, 85, 20);
 		panel_2.add(tfDataInicio);
-		
+
 		JLabel lblDataDeFim = new JLabel("Data de Fim");
 		lblDataDeFim.setBounds(207, 21, 85, 14);
 		panel_2.add(lblDataDeFim);
-		
+
 		try {
 			MaskFormatter maskDatafim = new MaskFormatter("##/##/####");
 			maskDatafim.setPlaceholderCharacter('_');
 			tfDataFim = new JFormattedTextField(maskDatafim);
 			tfDataFim.addCaretListener(new CaretListener() {
+				@Override
 				public void caretUpdate(CaretEvent arg0) {
 					liberaBotoes();
 				}
@@ -274,59 +277,60 @@ public class JanelaCriarAtualizarEstagios extends JInternalFrame {
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		}
-		
+
 		tfDataFim.setBounds(299, 19, 94, 20);
 		panel_2.add(tfDataFim);
-		
+
 		JLabel lblDataDeCadastro = new JLabel("Data de Cadastro");
 		lblDataDeCadastro.setBounds(411, 21, 131, 14);
 		panel_2.add(lblDataDeCadastro);
-		
+
 		tfDataCadastro = new JTextField();
 		tfDataCadastro.setEnabled(false);
 		tfDataCadastro.setBounds(543, 19, 94, 20);
 		panel_2.add(tfDataCadastro);
 		tfDataCadastro.setColumns(10);
-		
+
 		JLabel lblOrientador = new JLabel("Orientador");
 		lblOrientador.setBounds(10, 49, 85, 14);
 		panel_2.add(lblOrientador);
-		
-		cbOrientador = new JComboBox<String>();
+
+		cbOrientador = new JComboBox<>();
 		cbOrientador.setBounds(100, 46, 143, 20);
 		panel_2.add(cbOrientador);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Setor");
 		lblNewLabel_1.setBounds(655, 21, 46, 14);
 		panel_2.add(lblNewLabel_1);
-		
+
 		tfSetor = new JTextField();
 		tfSetor.setDocument(new UpCaseField());
 		tfSetor.setBounds(701, 21, 267, 20);
 		panel_2.add(tfSetor);
 		tfSetor.setColumns(10);
-		
+
 		JLabel lblHorrio = new JLabel("Horas p/dia");
 		lblHorrio.setBounds(816, 74, 85, 14);
 		panel_2.add(lblHorrio);
-		
+
 		PlainDocument doc1 = new PlainDocument();
 		doc1.setDocumentFilter(new DocumentFilter() {
 		    @Override
-		    public void insertString(FilterBypass fb, int off, String str, AttributeSet attr) 
-		        throws BadLocationException 
+		    public void insertString(FilterBypass fb, int off, String str, AttributeSet attr)
+		        throws BadLocationException
 		    {
 		        fb.insertString(off, str.replaceAll("\\D++", ""), attr);  // remove non-digits
-		    } 
+		    }
 		    @Override
-		    public void replace(FilterBypass fb, int off, int len, String str, AttributeSet attr) 
-		        throws BadLocationException 
+		    public void replace(FilterBypass fb, int off, int len, String str, AttributeSet attr)
+		        throws BadLocationException
 		    {
 		        fb.replace(off, len, str.replaceAll("\\D++", ""), attr);  // remove non-digits
 		    }
 		});
 		tfHorario = new JTextField();
 		tfHorario.addCaretListener(new CaretListener() {
+			@Override
 			public void caretUpdate(CaretEvent e) {
 				liberaBotoes();
 			}
@@ -335,43 +339,45 @@ public class JanelaCriarAtualizarEstagios extends JInternalFrame {
 		tfHorario.setBounds(907, 72, 61, 20);
 		panel_2.add(tfHorario);
 		tfHorario.setColumns(10);
-		
+
 		JLabel lblAtividades = new JLabel("Atividades");
 		lblAtividades.setBounds(10, 74, 74, 14);
 		panel_2.add(lblAtividades);
-		
+
 		tfAtividades = new JTextField();
 		tfAtividades.setDocument(new UpCaseField());
 		tfAtividades.setBounds(100, 74, 710, 20);
 		panel_2.add(tfAtividades);
 		tfAtividades.setColumns(10);
-		
+
 		lblSupervisor = new JLabel("Supervisor");
 		lblSupervisor.setBounds(249, 49, 84, 14);
 		panel_2.add(lblSupervisor);
-		
-		cbxSupervisor = new JComboBox<String>();
+
+		cbxSupervisor = new JComboBox<>();
 		cbxSupervisor.addItemListener(new ItemListener() {
+			@Override
 			public void itemStateChanged(ItemEvent arg0) {
 				liberaBotoes();
 			}
 		});
 		cbxSupervisor.setBounds(330, 46, 175, 20);
 		panel_2.add(cbxSupervisor);
-		
+
 		JLabel lblHorrioInicial = new JLabel("Hor\u00E1rio Inicial");
 		lblHorrioInicial.setBounds(512, 49, 106, 14);
 		panel_2.add(lblHorrioInicial);
-		
+
 		JLabel lblHorrioFinal = new JLabel("Hor\u00E1rio Final");
 		lblHorrioFinal.setBounds(737, 49, 94, 14);
 		panel_2.add(lblHorrioFinal);
-		
+
 		try {
 			MaskFormatter maskHoraIni = new MaskFormatter("##:##:##");
 			maskHoraIni.setPlaceholderCharacter('_');
 			tfHoraInicio = new JFormattedTextField(maskHoraIni);
 			tfHoraInicio.addCaretListener(new CaretListener() {
+				@Override
 				public void caretUpdate(CaretEvent e) {
 					liberaBotoes();
 				}
@@ -379,16 +385,17 @@ public class JanelaCriarAtualizarEstagios extends JInternalFrame {
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		}
-		
+
 		tfHoraInicio.setBounds(618, 47, 112, 20);
 		panel_2.add(tfHoraInicio);
 		tfHoraInicio.setColumns(10);
-		
+
 		try {
 			MaskFormatter maskhorafim = new MaskFormatter("##:##:##");
 			maskhorafim.setPlaceholderCharacter('_');
 			tfHoraFim = new JFormattedTextField(maskhorafim);
 			tfHoraFim.addCaretListener(new CaretListener() {
+				@Override
 				public void caretUpdate(CaretEvent e) {
 					liberaBotoes();
 				}
@@ -396,13 +403,14 @@ public class JanelaCriarAtualizarEstagios extends JInternalFrame {
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		}
-		
+
 		tfHoraFim.setBounds(837, 49, 131, 20);
 		panel_2.add(tfHoraFim);
 		tfHoraFim.setColumns(10);
-		
+
 		btSalvar = new JButton("Salvar Informa\u00E7\u00F5es");
 		btSalvar.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if(novoUsuario){
 					inserirEstagiario();
@@ -416,13 +424,13 @@ public class JanelaCriarAtualizarEstagios extends JInternalFrame {
 		getContentPane().add(btSalvar);
 
 	}
-	
+
 	public void atualizarTabelaAluno(){
         String sql1;
         sql1 = sqlAluno;
-         
+
         try {
-        	
+
             if(!tfFiltroAluno.getText().isEmpty()){
                 String filtro = tfFiltroAluno.getText();
                 String filtroUp = filtro.toUpperCase();
@@ -431,19 +439,19 @@ public class JanelaCriarAtualizarEstagios extends JInternalFrame {
                 		+ "bairro LIKE '%%%s%%' OR bairro LIKE '%%%s%%' OR cidade LIKE '%%%s%%' OR cidade LIKE '%%%s%%' OR email LIKE '%%%s%%' OR email LIKE '%%%s%%' OR "
                 		+ "telefone LIKE '%%%s%%' OR telefone LIKE '%%%s%%' OR celular LIKE '%%%s%%' OR celular LIKE '%%%s%%')",
                 		filtro, filtroUp, filtro, filtroUp, filtro, filtroUp, filtro, filtroUp, filtro, filtroUp, filtro, filtroUp, filtro, filtroUp, filtro, filtroUp, filtro, filtroUp, filtro, filtroUp);
-            }        	
+            }
 			tableModelAluno.setQuery(sql1);
-			
+
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
         tbAluno.getColumnModel().getColumn(0).setPreferredWidth(250);
 	}
-	
+
 	public void atualizarTabelaEmpresa(){
         String sql1;
         sql1 = sqlEmpresa;
-         
+
         if(!tfFiltroEmpresa.getText().isEmpty()){
             String filtro = tfFiltroEmpresa.getText();
             String filtroUp = filtro.toUpperCase();
@@ -460,9 +468,9 @@ public class JanelaCriarAtualizarEstagios extends JInternalFrame {
 		}
         tbEmpresa.getColumnModel().getColumn(0).setPreferredWidth(250);
 	}
-	
+
 	public void preencheListaDeOrientadores() {
-		listaOrientadores = new ArrayList<ListaDeOrientadores>();
+		listaOrientadores = new ArrayList<>();
 
 		try {
 			Statement busca = ConsultasDB.getStatement();
@@ -483,9 +491,9 @@ public class JanelaCriarAtualizarEstagios extends JInternalFrame {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void preencheListaDeSupervisores(String cnpj) {
-		listaSupervisores = new ArrayList<ListaDeSupervisores>();
+		listaSupervisores = new ArrayList<>();
 
 		try {
 
@@ -513,20 +521,20 @@ public class JanelaCriarAtualizarEstagios extends JInternalFrame {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void atualizarCampos(Estagiario estagiario){
 		novoUsuario = false;
 		matricula = estagiario.getMatricula();
 		cnpj = estagiario.getCnpj();
 		nome = estagiario.getNome();
 		empresa = estagiario.getEmpresa();
-		
+
 		Statement busca = ConsultasDB.getStatement();
 		try {
 			ResultSet resultado = busca.executeQuery("SELECT empresas_alunos.*,orientadores.nome AS nome_orientador FROM empresas_alunos,orientadores WHERE empresas_alunos.id_orientador = orientadores.id_orientador AND "
 					+ "empresas_alunos.matricula = '"+ matricula +"' AND empresas_alunos.cnpj = '"+ cnpj +"'");
 			resultado.next();
-			
+
 			dataInicio = (resultado.getObject("data_inicio") == null) ? "" : ConversorDates.DateBaseToDateCommon(resultado.getObject("data_inicio").toString());
 			dataFim = (resultado.getObject("data_fim") == null) ? "" : ConversorDates.DateBaseToDateCommon(resultado.getObject("data_fim").toString());
 			orientadorNome = (resultado.getObject("nome_orientador") == null) ? "" : resultado.getObject("nome_orientador").toString();
@@ -534,12 +542,12 @@ public class JanelaCriarAtualizarEstagios extends JInternalFrame {
 			dataCadastro = (resultado.getObject("data_cadastro") == null) ? "" : ConversorDates.DateBaseToDateCommon(resultado.getObject("data_cadastro").toString());
 			setor = (resultado.getObject("setor_estagio") == null) ? "" : resultado.getObject("setor_estagio").toString();
 			horario = (resultado.getObject("horario") == null) ? "" : resultado.getObject("horario").toString();
-			
+
 			horaInicio = (resultado.getObject("horario_inicio") == null) ? "" : resultado.getObject("horario_inicio").toString();
 			horaFim = (resultado.getObject("horario_fim") == null) ? "" : resultado.getObject("horario_fim").toString();
-			
+
 			supervisorId = ((resultado.getObject("supervisor") == null) ? -1 : (long) resultado.getObject("supervisor"));
-			
+
 			tbAluno.setVisible(false);
 			tbEmpresa.setVisible(false);
 			lbAluno.setText(nome + " ( " + matricula + " )");
@@ -555,11 +563,11 @@ public class JanelaCriarAtualizarEstagios extends JInternalFrame {
 			preencheListaDeOrientadores();
 			preencheListaDeSupervisores(cnpj);
 			cbOrientador.setSelectedItem(orientadorNome);
-			
+
 		} catch (Exception e) {
 		}
 	}
-	
+
 	public void limparCampos(){
 		novoUsuario = true;
 		cnpj = null;
@@ -582,7 +590,7 @@ public class JanelaCriarAtualizarEstagios extends JInternalFrame {
 		atualizarTabelaEmpresa();
 	}
 
-	
+
 	public void liberaBotoes() {
 		if (
 				!lbAluno.getText().isEmpty() &&
@@ -603,7 +611,7 @@ public class JanelaCriarAtualizarEstagios extends JInternalFrame {
 	public void inserirEstagiario(){
 		boolean result = false;
 		captaDadosDosCampos();
-		
+
 		String superv;
 		if(supervisorId == -1)
 			superv = "NULL";
@@ -615,7 +623,7 @@ public class JanelaCriarAtualizarEstagios extends JInternalFrame {
 			atualizarCampos(new Estagiario(matricula, cnpj, nome, empresa));
 		}
 	}
-	
+
 	public void alterarEstagiario(){
 		captaDadosDosCampos();
 		String camposEValores = String

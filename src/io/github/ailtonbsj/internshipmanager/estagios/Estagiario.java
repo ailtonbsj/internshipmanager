@@ -5,14 +5,14 @@ public class Estagiario {
 	private String cnpj;
 	private String nome;
 	private String empresa;
-	
+
 	public Estagiario(String matricula, String cnpj, String nome, String empresa) {
 		setMatricula(matricula);
 		setCnpj(cnpj);
 		setNome(nome);
 		setEmpresa(empresa);
 	}
-	
+
 	public String getMatricula() {
 		return matricula;
 	}

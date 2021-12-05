@@ -11,20 +11,20 @@ import javax.swing.JOptionPane;
 import io.github.ailtonbsj.internshipmanager.Config;
 
 public class ConsultasDB {
-	
+
 	private static Connection connection;
 	private static Statement statement;
 	private static ResultSet resultSet;
-	
+
 	public static void criaConexao() throws SQLException {
 		connection = DriverManager.getConnection(Config.DATABASE_URL, Config.USERNAME, Config.PASSWORD);
 		statement = connection.createStatement();
 	}
-	
+
 	public static ResultSetSQL busca(String sql) throws SQLException {
 		return new ResultSetSQL(Config.DATABASE_URL, Config.USERNAME, Config.PASSWORD, sql);
 	}
-	
+
 	public static String contarRegistros(String tabelaNome){
 		try {
 			criaConexao();
@@ -37,7 +37,7 @@ public class ConsultasDB {
 			return "-1";
 		}
 	}
-	
+
 	public static boolean adicionarRegistros(String tabelaNome,String camposNome, String valorNome){
 		try {
 			criaConexao();
@@ -59,7 +59,7 @@ public class ConsultasDB {
 		}
 		return false;
 	}
-	
+
 	public static void removeRegistros(String tabelaNome, String campoNome, String valorId, String campoNome2, String valorId2){
 		try{
 			criaConexao();
@@ -98,11 +98,11 @@ public class ConsultasDB {
 			System.out.println(erro);
 		}
 	}
-	
+
 	public static void removeRegistros(String tabelaNome, String campoNome, String valorId){
 		removeRegistros(tabelaNome, campoNome, valorId, null, null);
 	}
-	
+
 	public static void atualizarRegistros(String tabelaNome, String camposEValores, String campoId, String valorId, String campoId2, String valorId2){
 		try {
 			criaConexao();
@@ -117,22 +117,22 @@ public class ConsultasDB {
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Erro ao atualizar dados!\n\r\n\r" + e.getMessage());
 		}
-		
+
 	}
-	
+
 	public static void atualizarRegistros(String tabelaNome, String camposEValores, String campoId, String valorId){
 		atualizarRegistros(tabelaNome, camposEValores, campoId, valorId, null, null);
 	}
-	
+
 	public static Statement getStatement(){
 		try {
 			criaConexao();
 		} catch (Exception e) {
 		}
-		
+
 		return statement;
 	}
-	
+
 	public static boolean excluirAlunos(String id){
 		int resposta = JOptionPane.showConfirmDialog(null, "Você tem certeza que deseja excluir???", "Alerta", JOptionPane.OK_CANCEL_OPTION);
 		if(resposta == 0){
@@ -141,7 +141,7 @@ public class ConsultasDB {
 		}
 		return false;
 	}
-	
+
 	public static boolean excluirEmpresas(String id){
 		int resposta = JOptionPane.showConfirmDialog(null, "Você tem certeza que deseja excluir???", "Alerta", JOptionPane.OK_CANCEL_OPTION);
 		if(resposta == 0){
@@ -150,7 +150,7 @@ public class ConsultasDB {
 		}
 		return false;
 	}
-	
+
 	public static boolean excluirEstagios(String matricula, String cnpj){
 		int resposta = JOptionPane.showConfirmDialog(null, "Você tem certeza que deseja excluir???", "Alerta", JOptionPane.OK_CANCEL_OPTION);
 		if(resposta == 0){
@@ -164,11 +164,11 @@ public class ConsultasDB {
 		try {
 			ConsultasDB.criaConexao();
 			statement.executeUpdate("CREATE TABLE alunos (   cpf character varying(11) NOT NULL,   rg character varying(15),   nome character varying(50) NOT NULL,   nascimento date NOT NULL,   endereco character varying(55),   bairro character varying(35),   cidade character varying(40),   email character varying(60),   cep character varying(9),   telefone character varying(12),   celular character varying(12),   mae character varying(50),   pai character varying(50),   uf character(2),   CONSTRAINT pk_cpf PRIMARY KEY (cpf),   CONSTRAINT key_rg UNIQUE (rg) ) WITH (   OIDS=FALSE ); ALTER TABLE alunos   OWNER TO postgres; CREATE TABLE cursos (   id_curso bigint NOT NULL,   curso character varying(60),   CONSTRAINT pk_curso PRIMARY KEY (id_curso) ) WITH (   OIDS=FALSE ); ALTER TABLE cursos   OWNER TO postgres; CREATE TABLE cursos_alunos (   cpf character varying(11) NOT NULL,   id_curso bigint NOT NULL,   matricula character varying(60) NOT NULL,   semestre integer,   CONSTRAINT fk_cursoaluno PRIMARY KEY (cpf, id_curso),   CONSTRAINT fk_aluno FOREIGN KEY (cpf)       REFERENCES alunos (cpf) MATCH SIMPLE       ON UPDATE RESTRICT ON DELETE RESTRICT,   CONSTRAINT fk_curso FOREIGN KEY (id_curso)       REFERENCES cursos (id_curso) MATCH SIMPLE       ON UPDATE RESTRICT ON DELETE RESTRICT,   CONSTRAINT unik_matricula UNIQUE (matricula) ) WITH (   OIDS=FALSE ); ALTER TABLE cursos_alunos   OWNER TO postgres; CREATE TABLE empresas (   cnpj character varying(15) NOT NULL,   nome character varying(50) NOT NULL,   nome_fantasia character varying(50) NOT NULL,   endereco character varying(55),   bairro character varying(35),   cidade character varying(40),   uf character(2),   cep character varying(9),   email character varying(60),   telefone character varying(12),   ramo character varying(45),   atividades character varying(100),   CONSTRAINT pk_cnpj PRIMARY KEY (cnpj) ) WITH (   OIDS=FALSE ); ALTER TABLE empresas   OWNER TO postgres; CREATE TABLE orientadores (   id_orientador bigint NOT NULL,   nome character varying(50),   CONSTRAINT fk_ori PRIMARY KEY (id_orientador) ) WITH (   OIDS=FALSE ); ALTER TABLE orientadores   OWNER TO postgres; CREATE TABLE supervisores (   id_supervisor bigint NOT NULL,   cnpj character varying(15) NOT NULL,   nome character varying(50) NOT NULL,   cargo character varying(50),   CONSTRAINT pk_sup PRIMARY KEY (id_supervisor),   CONSTRAINT fk_cnpjs FOREIGN KEY (cnpj)       REFERENCES empresas (cnpj) MATCH SIMPLE       ON UPDATE RESTRICT ON DELETE RESTRICT ) WITH (   OIDS=FALSE ); ALTER TABLE supervisores   OWNER TO postgres; CREATE TABLE empresas_alunos (   cnpj character varying(15) NOT NULL,   matricula character varying(60) NOT NULL,   data_inicio date,   data_fim date,   id_orientador bigint,   atividades character varying(100),   data_cadastro date,   setor_estagio character varying(60),   horario integer,   supervisor bigint,   horario_inicio time without time zone,   horario_fim time without time zone,   CONSTRAINT pk_empalu PRIMARY KEY (cnpj, matricula),   CONSTRAINT fk_cnpj FOREIGN KEY (cnpj)       REFERENCES empresas (cnpj) MATCH SIMPLE       ON UPDATE RESTRICT ON DELETE RESTRICT,   CONSTRAINT fk_matricula FOREIGN KEY (matricula)       REFERENCES cursos_alunos (matricula) MATCH SIMPLE       ON UPDATE RESTRICT ON DELETE RESTRICT,   CONSTRAINT fk_orientador FOREIGN KEY (id_orientador)       REFERENCES orientadores (id_orientador) MATCH SIMPLE       ON UPDATE RESTRICT ON DELETE RESTRICT,   CONSTRAINT fk_superv FOREIGN KEY (supervisor)       REFERENCES supervisores (id_supervisor) MATCH SIMPLE       ON UPDATE RESTRICT ON DELETE RESTRICT ) WITH (   OIDS=FALSE ); ALTER TABLE empresas_alunos   OWNER TO postgres;");
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 }

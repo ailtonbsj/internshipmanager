@@ -8,12 +8,12 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.WindowConstants;
 
 import io.github.ailtonbsj.internshipmanager.InternshipManager;
 import io.github.ailtonbsj.internshipmanager.database.ConsultasDB;
@@ -33,6 +33,7 @@ public class JanelaListaCursos extends JInternalFrame {
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					JanelaListaCursos frame = new JanelaListaCursos();
@@ -49,7 +50,7 @@ public class JanelaListaCursos extends JInternalFrame {
 	 */
 	public JanelaListaCursos() {
 
-		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 		setClosable(true);
 		setIconifiable(true);
 		setTitle("Cursos");
@@ -72,6 +73,7 @@ public class JanelaListaCursos extends JInternalFrame {
 
 			JButton btnAdicionarCurso = new JButton("Adicionar Curso");
 			btnAdicionarCurso.addActionListener(new ActionListener() {
+				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					adicionarCurso();
 				}
@@ -80,6 +82,7 @@ public class JanelaListaCursos extends JInternalFrame {
 
 			JButton btnAtualizarCurso = new JButton("Atualizar Curso");
 			btnAtualizarCurso.addActionListener(new ActionListener() {
+				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					String valor = linhaSelecionada();
 					if (!valor.equals("")) {
@@ -101,6 +104,7 @@ public class JanelaListaCursos extends JInternalFrame {
 
 			JButton btnExcluirCurso = new JButton("Excluir Curso");
 			btnExcluirCurso.addActionListener(new ActionListener() {
+				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					String valor = linhaSelecionada();
 					if (JOptionPane.showConfirmDialog(null, "Tem certeza que deseja exluir?") == 0) {

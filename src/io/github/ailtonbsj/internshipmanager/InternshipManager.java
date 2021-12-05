@@ -55,7 +55,7 @@ public class InternshipManager extends JFrame {
 	private JanelaGerarDocumentos janelaGerarDocumentos;
 	JButton botaoAtualizarAlunos, botaoExcluirAlunos, botaoAdicionarAlunos, botaoAtualizarEmpresas, botaoExcluirEmpresas, botaoAdicionarEmpresas,
 	btAddEstagio, btRefEstagio, btDelEstagio, btGeraDoc;
-	
+
     private JMenu mnAluno;
     private JMenu mnEmpresa;
     private JMenu mnEstagiandos;
@@ -68,7 +68,7 @@ public class InternshipManager extends JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -91,9 +91,10 @@ public class InternshipManager extends JFrame {
         }
         //</editor-fold>
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			@SuppressWarnings("resource")
 			public void run() {
-					
+
 					File arqConf = new File(InternshipManager.class.getProtectionDomain().getCodeSource().getLocation().getPath());
 					arqConf = new File(arqConf.getParent(),"conf.ini");
 					try {
@@ -114,13 +115,13 @@ public class InternshipManager extends JFrame {
 			}
 		});
 	}
-	
+
 	public InternshipManager() {
-		
+
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent arg0) {
-				
+
 				File arqConf = new File(InternshipManager.class.getProtectionDomain().getCodeSource().getLocation().getPath());
 				arqConf = new File(arqConf.getParent(),"conf.ini");
 				BufferedReader bfr;
@@ -146,36 +147,39 @@ public class InternshipManager extends JFrame {
 		});
 		setTitle("Internship Manager 1.1");
 		setBounds(100, 100, 826, 466);
-		
+
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
-		
+
 		mnAluno = new JMenu("Alunos");
 		mnAluno.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				janelaListarAlunos.atualizarTabela();
 				janelaListarAlunos.setVisible(true);
 			}
 		});
 		menuBar.add(mnAluno);
-		
+
 		JMenuItem mntmListarAlunos = new JMenuItem("Listar Alunos");
 		mnAluno.add(mntmListarAlunos);
-		
+
 		mntmAdicionarAluno = new JMenuItem("Adicionar Aluno");
 		mntmAdicionarAluno.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				AdicionarAluno();
 			}
 		});
 		mnAluno.add(mntmAdicionarAluno);
 		mntmListarAlunos.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				janelaListarAlunos.atualizarTabela();
 				janelaListarAlunos.setVisible(true);
 			}
 		});
-		
+
 		janelaListarAlunos = new JanelaListarAlunos();
 		janelaListarEmpresas = new JanelaListarEmpresas();
 		janelaListarEstagios = new JanelaListarEstagios();
@@ -195,8 +199,9 @@ public class InternshipManager extends JFrame {
 		btRefEstagio = new JButton("Atualizar Estágio");
 		btDelEstagio = new JButton("Remover Estágio");
 		btGeraDoc = new JButton("Gerar Documentos");
-		
+
 		botaoAtualizarAlunos.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				String selecao = janelaListarAlunos.linhaSelecionada();
 				if(!selecao.equals("")){
@@ -206,8 +211,9 @@ public class InternshipManager extends JFrame {
 				}
 			}
 		});
-		
+
 		botaoExcluirAlunos.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				String selecao = janelaListarAlunos.linhaSelecionada();
 				if(!selecao.equals("")){
@@ -216,14 +222,16 @@ public class InternshipManager extends JFrame {
 				}
 			}
 		});
-		
+
 		botaoAdicionarAlunos.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				AdicionarAluno();
 			}
 		});
-		
+
 		botaoAtualizarEmpresas.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				String selecao = janelaListarEmpresas.linhaSelecionada();
 				if(!selecao.equals("")){
@@ -235,6 +243,7 @@ public class InternshipManager extends JFrame {
 		});
 
 		botaoExcluirEmpresas.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				String selecao = janelaListarEmpresas.linhaSelecionada();
 				if(!selecao.equals("")){
@@ -243,20 +252,23 @@ public class InternshipManager extends JFrame {
 				}
 			}
 		});
-		
+
 		botaoAdicionarEmpresas.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				AdicionarEmpresa();
 			}
 		});
-		
+
 		btAddEstagio.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				AdicionarEstagiario();
 			}
 		});
-		
+
 		btRefEstagio.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				Estagiario selecao = janelaListarEstagios.linhaSelecionada();
 				if(selecao != null){
@@ -266,8 +278,9 @@ public class InternshipManager extends JFrame {
 				}
 			}
 		});
-		
+
 		btDelEstagio.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				Estagiario selecao = janelaListarEstagios.linhaSelecionada();
 				if(selecao != null){
@@ -276,122 +289,136 @@ public class InternshipManager extends JFrame {
 				}
 			}
 		});
-		
+
 		btGeraDoc.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				Estagiario selecao = janelaListarEstagios.linhaSelecionada();
 				if(selecao != null){
 					janelaGerarDocumentos.atualizaDadosEstagio(selecao);
-					janelaGerarDocumentos.setVisible(true);	
+					janelaGerarDocumentos.setVisible(true);
 				}
 			}
 		});
-		
+
 		mnEmpresa = new JMenu("Empresas");
 		mnEmpresa.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				janelaListarEmpresas.atualizarTabela();
 				janelaListarEmpresas.setVisible(true);
 			}
 		});
 		menuBar.add(mnEmpresa);
-		
+
 		JMenuItem mntmListarEmpresas = new JMenuItem("Listar Empresas");
 		mntmListarEmpresas.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				janelaListarEmpresas.atualizarTabela();
 				janelaListarEmpresas.setVisible(true);
 			}
 		});
 		mnEmpresa.add(mntmListarEmpresas);
-		
+
 		mntmAdicionarEmpresa = new JMenuItem("Adicionar Empresa");
 		mntmAdicionarEmpresa.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				AdicionarEmpresa();
 			}
 		});
 		mnEmpresa.add(mntmAdicionarEmpresa);
-		
+
 		mnEstagiandos = new JMenu("Estagi\u00E1rios");
 		mnEstagiandos.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				janelaListarEstagios.atualizarTabela();
 				janelaListarEstagios.setVisible(true);
 			}
 		});
 		menuBar.add(mnEstagiandos);
-		
+
 		JMenuItem mntmListarEstagirios = new JMenuItem("Listar Estagi\u00E1rios");
 		mntmListarEstagirios.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				janelaListarEstagios.atualizarTabela();
 				janelaListarEstagios.setVisible(true);
 			}
 		});
 		mnEstagiandos.add(mntmListarEstagirios);
-		
+
 		JMenuItem mntmAdicionarEstagirio = new JMenuItem("Adicionar Estagi\u00E1rio");
 		mntmAdicionarEstagirio.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				AdicionarEstagiario();
 			}
 		});
 		mnEstagiandos.add(mntmAdicionarEstagirio);
-		
+
 		mnOrientadores = new JMenu("Orientadores");
 		mnOrientadores.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				janelaListaOrientador.setVisible(true);
 			}
 		});
 		menuBar.add(mnOrientadores);
-		
+
 		JMenuItem mntmListarOrientadores = new JMenuItem("Listar Orientadores");
 		mntmListarOrientadores.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				janelaListaOrientador.setVisible(true);
 			}
 		});
 		mnOrientadores.add(mntmListarOrientadores);
-		
+
 		JMenuItem mntmAdicionarOrientador = new JMenuItem("Adicionar Orientador");
 		mntmAdicionarOrientador.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				janelaListaOrientador.adicionarOrientador();
 			}
 		});
 		mnOrientadores.add(mntmAdicionarOrientador);
-		
+
 		mnCursos = new JMenu("Cursos");
 		mnCursos.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				janelaListaCursos.setVisible(true);
 			}
 		});
 		menuBar.add(mnCursos);
-		
+
 		JMenuItem mntmListaDeCursos = new JMenuItem("Lista de Cursos");
 		mntmListaDeCursos.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				janelaListaCursos.setVisible(true);
 			}
 		});
 		mnCursos.add(mntmListaDeCursos);
-		
+
 		JMenuItem mntmAdicionarCurso = new JMenuItem("Adicionar Curso");
 		mntmAdicionarCurso.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				janelaListaCursos.adicionarCurso();
 			}
 		});
 		mnCursos.add(mntmAdicionarCurso);
-		
+
 		JMenu mnAjuda = new JMenu("Configura\u00E7\u00F5es");
 		menuBar.add(mnAjuda);
-		
+
 		JMenuItem mntmOpesDeBackup = new JMenuItem("Restaurar Dados");
 		mntmOpesDeBackup.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				File pasta = new File(InternshipManager.class.getProtectionDomain().getCodeSource().getLocation().getPath());
 				pasta = new File(pasta.getParent(),"backups");
@@ -411,9 +438,10 @@ public class InternshipManager extends JFrame {
 			}
 		});
 		mnAjuda.add(mntmOpesDeBackup);
-		
+
 		JMenuItem mntmSobre = new JMenuItem("Sobre");
 		mntmSobre.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				JOptionPane.showMessageDialog(null, "Software desenvolvido por:\n\nJosé Ailton B. da Silva\nEmail:ailton.ifce@gmail.com\n\nHermesson Douglas Mota\nEmail: hermesson@gmail.com\n\n");
 			}
@@ -423,7 +451,7 @@ public class InternshipManager extends JFrame {
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		
+
 		JBackground desktopPane = new JBackground();
 		desktopPane.setBackground(Color.WHITE);
 		desktopPane.add(janelaListarAlunos);
@@ -440,20 +468,20 @@ public class InternshipManager extends JFrame {
 		painelDeBotoes.add(botaoAdicionarAlunos);
 		painelDeBotoes.add(botaoAtualizarAlunos);
 		painelDeBotoes.add(botaoExcluirAlunos);
-		
+
 		JPanel painelDeBotoesEmpresas = new JPanel(new GridLayout(1,3));
 		janelaListarEmpresas.getContentPane().add(painelDeBotoesEmpresas, BorderLayout.SOUTH);
 		painelDeBotoesEmpresas.add(botaoAdicionarEmpresas);
 		painelDeBotoesEmpresas.add(botaoAtualizarEmpresas);
 		painelDeBotoesEmpresas.add(botaoExcluirEmpresas);
-		
+
 		JPanel painelDeBotoesEstagio = new JPanel(new GridLayout(1,4));
 		janelaListarEstagios.getContentPane().add(painelDeBotoesEstagio, BorderLayout.SOUTH);
 		painelDeBotoesEstagio.add(btAddEstagio);
 		painelDeBotoesEstagio.add(btRefEstagio);
 		painelDeBotoesEstagio.add(btDelEstagio);
 		painelDeBotoesEstagio.add(btGeraDoc);
-		
+
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 		bloquearMenusPrincipais();
 	}
@@ -472,7 +500,7 @@ public class InternshipManager extends JFrame {
 			mnEstagiandos.setEnabled(true);
 		}
 	}
-	
+
 	public void recebeJanelaPrincipal(InternshipManager a){
 		janelaListaCursos.recebeJanelaPrincipal(a);
 		janelaListaOrientador.recebeJanelaPrincipal(a);

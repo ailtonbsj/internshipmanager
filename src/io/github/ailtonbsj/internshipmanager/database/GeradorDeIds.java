@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 
 public class GeradorDeIds {
-	
+
 	public static long getNewId(){
 		Calendar cld = Calendar.getInstance();
 		int ano = cld.get(Calendar.YEAR);
@@ -16,8 +16,8 @@ public class GeradorDeIds {
 		int mil = cld.get(Calendar.MILLISECOND);
 		Timestamp nanostamp = new Timestamp(System.nanoTime());
 		int nano = nanostamp.getNanos()/1000000;
-		
+
 		return Long.parseLong("" + nano + mil + sec + min + hor + dia + mes + ano);
 	}
-	
+
 }

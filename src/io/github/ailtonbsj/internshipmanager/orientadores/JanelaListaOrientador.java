@@ -1,24 +1,18 @@
 package io.github.ailtonbsj.internshipmanager.orientadores;
 
-import java.awt.EventQueue;
-
-import javax.swing.JInternalFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-
 import java.awt.BorderLayout;
-
-import javax.swing.JTable;
-import javax.swing.JPanel;
-
+import java.awt.EventQueue;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
-import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.WindowConstants;
 
 import io.github.ailtonbsj.internshipmanager.InternshipManager;
 import io.github.ailtonbsj.internshipmanager.database.ConsultasDB;
@@ -38,6 +32,7 @@ public class JanelaListaOrientador extends JInternalFrame {
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					JanelaListaOrientador frame = new JanelaListaOrientador();
@@ -56,7 +51,7 @@ public class JanelaListaOrientador extends JInternalFrame {
 
 		setTitle("Orientadores");
 		setClosable(true);
-		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 		setResizable(true);
 		setIconifiable(true);
 		setBounds(100, 100, 636, 271);
@@ -81,6 +76,7 @@ public class JanelaListaOrientador extends JInternalFrame {
 
 		JButton btnAdicionarOrientador = new JButton("Adicionar Orientador");
 		btnAdicionarOrientador.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				adicionarOrientador();
 			}
@@ -89,6 +85,7 @@ public class JanelaListaOrientador extends JInternalFrame {
 
 		JButton btnAtualizar = new JButton("Atualizar Orientador");
 		btnAtualizar.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
 				String valor = linhaSelecionada();
@@ -112,6 +109,7 @@ public class JanelaListaOrientador extends JInternalFrame {
 
 		JButton btnExcluir = new JButton("Excluir Orientador");
 		btnExcluir.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				String valor = linhaSelecionada();
 				if (JOptionPane.showConfirmDialog(null, "Tem certeza que deseja exluir?") == 0) {

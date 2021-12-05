@@ -16,7 +16,7 @@ public class ListaDeCursos {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
+
 	public ListaDeCursos(long id,String nome) {
 		setId(id);
 		setNome(nome);

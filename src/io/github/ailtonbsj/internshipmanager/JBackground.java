@@ -10,16 +10,17 @@ import javax.swing.JDesktopPane;
 public class JBackground extends JDesktopPane {
 
 	Image img;
-	
+
 	public JBackground() {
-		
+
 		img  = new ImageIcon(this.getClass().getResource("bg.jpg")).getImage();
 	}
-	
+
+	@Override
 	protected void paintComponent(Graphics g) {
-		
-		super.paintComponent(g);		
+
+		super.paintComponent(g);
 		g.drawImage(img, (getWidth()/2) - (img.getWidth(null)/2), (getHeight()/2) - (img.getHeight(null)/2), null);
-		
+
 	}
 }

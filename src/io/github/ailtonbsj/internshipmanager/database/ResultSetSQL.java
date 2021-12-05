@@ -21,15 +21,15 @@ import javax.swing.table.AbstractTableModel;
  */
 @SuppressWarnings("serial")
 public class ResultSetSQL extends AbstractTableModel {
-    
+
     private Connection connection;
     private Statement statement;
     private ResultSet resultSet;
     private ResultSetMetaData metaData;
     private int numberOfRows;
-    
+
     private boolean connectedToDatabase = false;
-    
+
     public ResultSetSQL(String url, String username, String password, String query) throws SQLException {
         connection = DriverManager.getConnection(url, username, password);
         statement = connection.createStatement(
@@ -37,9 +37,9 @@ public class ResultSetSQL extends AbstractTableModel {
                 ResultSet.CONCUR_READ_ONLY
         );
         connectedToDatabase = true;
-        
+
         setQuery(query);
-        
+
     }
 
     @Override
@@ -61,8 +61,9 @@ public class ResultSetSQL extends AbstractTableModel {
         }
         return 0;
     }
-    
-    public String getColumnName(int column) throws IllegalStateException
+
+    @Override
+	public String getColumnName(int column) throws IllegalStateException
     {
         if(!connectedToDatabase)
             throw new IllegalStateException("Not Conneced to Database");
@@ -86,7 +87,7 @@ public class ResultSetSQL extends AbstractTableModel {
         }
         return "";
     }
-    
+
     public void disconnectFromDatabase(){
         if(connectedToDatabase){
             try {
@@ -101,7 +102,7 @@ public class ResultSetSQL extends AbstractTableModel {
             }
         }
     }
-    
+
     public void setQuery(String query) throws SQLException, IllegalStateException{
         if(!connectedToDatabase)
             throw new IllegalStateException("Not Connected to Database");
@@ -110,9 +111,9 @@ public class ResultSetSQL extends AbstractTableModel {
         //determina numero de linha do resultSet
         resultSet.last();
         numberOfRows = resultSet.getRow();
-        
+
         //notifica a JTable de o modelo foi alterado
-        fireTableStructureChanged(); 
+        fireTableStructureChanged();
     }
-    
+
 }
