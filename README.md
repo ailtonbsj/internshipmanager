@@ -20,13 +20,25 @@ O Internship Manager é um sistema capaz de gerenciar documentos de alunos em es
  - Capacidade de Adicionar novos modelos para documentação do aluno
  - Backup de banco de dados automatizado mensalmente
  
-## Instalação
+## Instalação comum
 
 1) Instale o servidor de banco de dados PostgreSQL. Crie um usuário `postgres` com senha `postgres`.
 
 2) Instale o `Java 8 SE` ou versão superior e execute o arquivo `jar`.
 
 3) A pasta `backup` terá um snapshot do  banco a cada 5 dias. Use algum app de backup para ficar sincronizando esse diretório.
+
+## Instalação via Docker
+
+```bash
+# Create container
+sudo docker volume create internshipManager
+sudo docker run -d --name box1 -p 8080:8080 --mount source=internshipManager,target=/var/lib/postgresql/14/ -v ~/Publico:/opt/webswing/apps/internshipmanager/documentos internship-manager
+```
+
+## Gerando uma Imagem Docker com Webswing e PostgreeSQL
+
+Execute o script `build-docker-image.sh` para gerar um imagem docker pronta.
 
 ## Telas
 
@@ -43,7 +55,12 @@ O Internship Manager é um sistema capaz de gerenciar documentos de alunos em es
 Campos aos quais você pode adicionar em um modelo de documento Word 2007 (.docx) dentro da pasta `modelos`.
 
 ```
-#ORIENTADOR# #CNPJ# #MATRICULA# #DATA_INICIO# #DATA_FIM# #ATIVALUNO# #DATA_CADASTRO# #SETOR_ESTAGIO# #HORARIO# #EMPRESA# #NOME_FANTASIA# #ENDEMPRESA# #BAIRROEMPRESA# #CIDADEEMPRESA# #UFEMPRESA# #CEPEMPRESA# #EMAILEMPRESA# #TELEFONEEMPRESA# #RAMO# #ATIVEMPRESA# #SEMESTRE# #CPF# #CURSO# #RG# #ALUNO# #NASCIMENTO# #ENDALUNO# #BAIRROALUNO# #CIDADEALUNO# #EMAILALUNO# #CEPALUNO# #TELEFONEALUNO# #CELULARALUNO# #MAE# #PAI# #UFALUNO#
+#ORIENTADOR# #CNPJ# #MATRICULA# #DATA_INICIO# #DATA_FIM# #ATIVALUNO# #DATA_CADASTRO#
+#SETOR_ESTAGIO# #HORARIO# #EMPRESA# #NOME_FANTASIA# #ENDEMPRESA# #BAIRROEMPRESA#
+#CIDADEEMPRESA# #UFEMPRESA# #CEPEMPRESA# #EMAILEMPRESA# #TELEFONEEMPRESA# #RAMO#
+#ATIVEMPRESA# #SEMESTRE# #CPF# #CURSO# #RG# #ALUNO# #NASCIMENTO# #ENDALUNO#
+#BAIRROALUNO# #CIDADEALUNO# #EMAILALUNO# #CEPALUNO# #TELEFONEALUNO# #CELULARALUNO#
+#MAE# #PAI# #UFALUNO#
 ```
 
 ## Links
