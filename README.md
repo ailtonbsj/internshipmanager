@@ -31,9 +31,25 @@ O Internship Manager é um sistema capaz de gerenciar documentos de alunos em es
 ## Instalação via Docker
 
 ```bash
-# Create container
-sudo docker volume create internshipManager
-sudo docker run -d --name box1 -p 8080:8080 --mount source=internshipManager,target=/var/lib/postgresql/14/ -v ~/Publico:/opt/webswing/apps/internshipmanager/documentos internship-manager
+# MODE 1: Easy way
+sudo docker run -d --name box1 -p 8080:8080 ailtonbsj/internship-manager
+
+# MODE 2: Persisting database in a volume
+sudo docker volume create IMPostgres
+sudo docker run -d --name box1 -p 8080:8080 --mount source=IMPostgres,target=/var/lib/postgresql/14/ ailtonbsj/internship-manager
+
+# MODE 3: Exposing Document folder
+mkdir ~/Publico
+sudo docker run -d --name box1 -p 8080:8080 -v ~/Publico:/opt/webswing/apps/internshipmanager/documentos ailtonbsj/internship-manager
+
+# MODE 4: Exposing Backup folder
+mkdir ~/Publico
+sudo docker run -d --name box1 -p 8080:8080 -v ~/Publico:/opt/webswing/apps/internshipmanager/backups ailtonbsj/internship-manager
+
+# FULL COMPLETE MODE
+mkdir ~/Publico
+sudo docker volume create IMPostgres
+sudo docker run -d --name box1 -p 8080:8080 --mount source=IMPostgres,target=/var/lib/postgresql/14/ -v ~/Publico:/opt/webswing/apps/internshipmanager/documentos -v ~/Publico:/opt/webswing/apps/internshipmanager/backups ailtonbsj/internship-manager
 ```
 
 ## Gerando uma Imagem Docker com Webswing e PostgreeSQL

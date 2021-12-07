@@ -12,4 +12,4 @@ if [ ! -f webswing-examples-eval-21.2.2-distribution.zip ]; then
     wget https://dev.webswing.org/files/public/webswing-examples-eval-21.2.2-distribution.zip
 fi
 
-sudo docker build -t internship-manager .
+sudo docker build -t ailtonbsj/internship-manager .
